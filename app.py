@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ class Movie(db.Model):
     director = db.Column(db.String(50), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<ID %r>' % self.id
+        return '<id:%r>' % self.id
 
 
 @app.route('/movies', methods=['GET', 'POST'])
@@ -28,21 +28,31 @@ def movie():
         db.session.add(movie)
         db.session.commit()        
         return 'Se ha creado una pelicula'
-    print(Movie.query.all())
-    return 'Movie.query.all()'
+    elif request.method == 'GET':
+        return render_template('index.html', movies=Movie.query.all())
 
 
-@app.route('/movies/<int:movie_id>', methods=['GET'])
-def search(movie_id):
-    movie_filter = list(filter(lambda x: x['id'] == movie_id, database))
-    print(movie_filter)
-    return jsonify(movie_filter)
+# @app.route('/movies/<int:movie_id>', methods=['GET'])
+# def search(movie_id):
+#     movie_filter = list(filter(lambda x: x['id'] == movie_id, database))
+#     print(movie_filter)
+#     return jsonify(movie_filter)
 
-@app.route('/movies/<int:movie_id>', methods=['DELETE'])
-def delete(movie_id):
-    movie_remove = list(filter(lambda x: x['id'] == movie_id, database))
-    database.remove(movie_remove[0])
-    return jsonify(database)
+@app.route('/movies/<int:id>', methods=['GET'])
+def search(id):
+    movie_search = Movie.query.get(id)
+    if movie_search:
+        print(movie_search.name, movie_search.year, movie_search.category)
+        return "{}, {}, {}".format(movie_search.name, movie_search.year, movie_search.category)
+    return "No encontrado"
+
+# @app.route('/movies/<int:movie_id>', methods=['DELETE'])
+# def delete(movie_id):
+#     movie_remove = list(filter(lambda x: x['id'] == movie_id, database))
+#     database.remove(movie_remove[0])
+#     return jsonify(database)
+
+
 
 @app.route('/movies/<int:movie_id>', methods=['PUT'])
 def update(movie_id):

@@ -1,4 +1,4 @@
-# from flask import Flask
+# zfrom flask import Flask
 from app import app
 from flask_sqlalchemy import SQLAlchemy
 

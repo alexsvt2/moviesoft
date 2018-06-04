@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang = "es">
+<title> ** Lista de Peliculas **</title>
+
+<body>
+{% for movie in movies %}
+{{movie.id}}
+{{movie.name}}
+{{movie.year}}
+{{movie.category}}
+{{movie.director}}
+{% endfor %}
+</body>
+</html>
