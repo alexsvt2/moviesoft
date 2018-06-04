@@ -1,23 +1,35 @@
 from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
-database = []
+app = Flask(__name__)
 
-app = Flask(__name__) 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
+db = SQLAlchemy(app)
+
+class Movie(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+    year = db.Column(db.Integer, unique=False, nullable=False)
+    category = db.Column(db.String(50), unique=False, nullable=False)
+    director = db.Column(db.String(50), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<ID %r>' % self.id
+
 
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
     if request.method == 'POST':
-        id = len(database) + 1
         name = request.form['name']
         year = request.form['year']
         category = request.form['category']
         director = request.form['director']
-        movie = {"id":id,"name":name,"year":year,"category":category,"director":director}
-        database.append(movie)
-        print(movie)
-        
-        return jsonify(movie) 
-    return jsonify(database)
+        movie = Movie(name=name, year=year, category=category, director=director)
+        db.session.add(movie)
+        db.session.commit()        
+        return 'Se ha creado una pelicula'
+    print(Movie.query.all())
+    return 'Movie.query.all()'
 
 
 @app.route('/movies/<int:movie_id>', methods=['GET'])
@@ -34,7 +46,7 @@ def delete(movie_id):
 
 @app.route('/movies/<int:movie_id>', methods=['PUT'])
 def update(movie_id):
-    if request.method == 'POST':
+    if request.method == 'PUT':
         movie_update = list(filter(lambda x: x['id'] == movie_id, database))
         if request.form['name'] != '':
             movie_update[0]['name'] = request.form['name']
@@ -47,5 +59,5 @@ def update(movie_id):
         database.append(movie_update)
     return jsonify(database)
 
-
-app.run(debug = True)
+if __name__=='__main__':
+    app.run(debug = True)
