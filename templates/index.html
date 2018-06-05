@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
+
 {% block content %}
+<h1> Movie-Index </h1>
 <table>
     <thead>
         <tr>
@@ -9,32 +11,29 @@
             <th>Category</th>
             <th>Director</th>
         </tr>
-
     </thead>
         <tbody>
         {% for movie in movies %}
         <tr>
-            <td>{{movie.id}}</td>
-            <td>{{movie.name}}</td>
-            <td>{{movie.year}}</td>
-            <td>{{movie.category}}</td>
-            <td>{{movie.director}}</td>
+            <td><a href="/movies/{{movie.id}}">{{movie.id}}</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.name}}</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
 <h2>Add a new Movie</h2>
-<form method="post">
+<form method="post" action="/movies">
         <label for="name">Movie Name</label>
-        <input type="text" movie.name = "movie.name" placeholder="Introduce the movie name" ><br>
+        <input type="text" name = "name" placeholder="Introduce the movie name" ><br>
         <label for="year">Release Year</label>
-        <input type="text" movie.year = "movie.year" placeholder="Introduce the release year" ><br>
+        <input type="text" name = "year" placeholder="Introduce the release year" ><br>
         <label for="category">Movie Category</label>
-        <input type="text" movie.category = "movie.category" placeholder="Introduce the movie genre"><br>
+        <input type="text" name = "category" placeholder="Introduce the movie genre"><br>
         <label for="director">Movie Director</label>
-        <input type="text" movie.director = "movie.director" placeholder="Introduce the film director"><br>
-        <input type="submit" value="Send">  
-    
+        <input type="text" name = "director" placeholder="Introduce the film director"><br>
+        <input type="submit" value="Send">
 </form>
 {% endblock %}

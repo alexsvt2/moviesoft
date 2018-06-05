@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -16,13 +16,6 @@ class Movie(db.Model):
     def __repr__(self):
         return '<id:%r>' % self.id
     
-    # def __init__(self, name, year, category, director):
-    #     self.name = name
-    #     self.year = year
-    #     self.category = category
-    #     self.director = director
-
-
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
     if request.method == 'POST':
@@ -30,10 +23,10 @@ def movie():
         year = request.form['year']
         category = request.form['category']
         director = request.form['director']
-        movie = Movie(name=name, year=year, category=category, director=director)
+        movie = Movie(name=name, year=year, category=category, director=director) #Instancia
         db.session.add(movie)
-        db.session.commit()        
-        return "Se ha creado una pelicula"
+        db.session.commit()
+        return redirect(url_for('movie'))
     elif request.method == 'GET':
         return render_template('index.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
 
@@ -54,20 +47,16 @@ def delete(id):
         db.session.commit()
         return "Se ha eliminado de la base de Datos"
 
-# @app.route('/movies/<int:movie_id>', methods=['PUT'])
-# def update(movie_id):
-#     if request.method == 'PUT':
-#         movie_update = list(filter(lambda x: x['id'] == movie_id, database))
-#         if request.form['name'] != '':
-#             movie_update[0]['name'] = request.form['name']
-#         if request.form['year'] != '':
-#             movie_update[0]['year'] = request.form['year']
-#         if request.form['category'] != '':
-#             movie_update[0]['category'] = request.form['category']
-#         if request.form['director'] != '':
-#             movie_update[0]['director'] = request.form['director']
-#         database.append(movie_update)
-#     return jsonify(database)
+@app.route('/movies/<int:id>', methods=['PUT'])
+def update(id):
+    """Actualiza los datos de una pelicula"""
+    movie_update_filter = Movie.query.filter_by(id=id).first()
+    movie_update_filter.name = request.form['name']
+    movie_update_filter.year = request.form['year']
+    movie_update_filter.category = request.form['category']
+    movie_update_filter.director = request.form['director']
+    db.session.commit()
+    return render_template('search.html', movie=movie_update_filter)
 
 if __name__=='__main__':
     app.run(debug = True)

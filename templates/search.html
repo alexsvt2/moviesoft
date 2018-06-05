@@ -1,8 +1,8 @@
-{% extends 'index.html' %}
+{% extends 'base/base.html' %}
 {% block content %}
-{{movie.id}}
-{{movie.name}}
-{{movie.year}}
-{{movie.category}}
-{{movie.director}}
+<h3>{{movie.id}}</h3>
+{{movie.name}}<br>
+{{movie.year}}<br>
+{{movie.category}}<br>
+{{movie.director}}<br>
 {% endblock %}
