@@ -31,21 +31,20 @@ def movie():
     elif request.method == 'GET':
         return render_template('index.html', movies=Movie.query.all())
 
-
-# @app.route('/movies/<int:movie_id>', methods=['GET'])
-# def search(movie_id):
-#     movie_filter = list(filter(lambda x: x['id'] == movie_id, database))
-#     print(movie_filter)
-#     return jsonify(movie_filter)
-
 @app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
-    movie_search = Movie.query.get(id)
+    movie_search = Movie.query.filter_by(id=id).first()
     if movie_search:
-        print(movie_search.name, movie_search.year, movie_search.category)
-        return "{}, {}, {}".format(movie_search.name, movie_search.year, movie_search.category)
+        return render_template('search.html', movie=movie_search)    
     return "No encontrado"
 
+@app.route('/movies/<int:id>', methods=['DELETE'])
+def delete(id):
+    movie_delete = Movie.query.filter_by(id=id).first()
+    if request.method == 'DELETE':
+        db.session.delete(movie_delete)
+        db.session.commit()
+        return "Se ha eliminado de la base de Datos"
 # @app.route('/movies/<int:movie_id>', methods=['DELETE'])
 # def delete(movie_id):
 #     movie_remove = list(filter(lambda x: x['id'] == movie_id, database))
