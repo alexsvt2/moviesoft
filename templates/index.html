@@ -11,17 +11,30 @@
         </tr>
 
     </thead>
-    <tbody>
-    {% for movie in movies %}
-    <tr>
-        <td>{{movie.id}}</td>
-        <td>{{movie.name}}</td>
-        <td>{{movie.year}}</td>
-        <td>{{movie.category}}</td>
-        <td>{{movie.director}}</td>
-    </tr>
-    {% endfor %}
-
-</tbody>
+        <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{movie.id}}</td>
+            <td>{{movie.name}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.category}}</td>
+            <td>{{movie.director}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
+
+<h2>Add a new Movie</h2>
+<form method="post">
+        <label for="name">Movie Name</label>
+        <input type="text" movie.name = "movie.name" placeholder="Introduce the movie name" ><br>
+        <label for="year">Release Year</label>
+        <input type="text" movie.year = "movie.year" placeholder="Introduce the release year" ><br>
+        <label for="category">Movie Category</label>
+        <input type="text" movie.category = "movie.category" placeholder="Introduce the movie genre"><br>
+        <label for="director">Movie Director</label>
+        <input type="text" movie.director = "movie.director" placeholder="Introduce the film director"><br>
+        <input type="submit" value="Send">  
+    
+</form>
 {% endblock %}
