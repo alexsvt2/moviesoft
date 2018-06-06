@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, f
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
@@ -28,13 +29,15 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         if not name or not year or not category or not director:
-            flash('Introduce todos los datos requeridos')
+            flash('Please enter all the fields', 'error')
+            return redirect(url_for('movie'))
             # return 'Introduce todos los campos'
         movie = Movie(name=name, year=year, category=category, director=director) #Instancia
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
     elif request.method == 'GET':
+        flash('Welcome', 'info')
         return render_template('movieindex.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
 
 @app.route('/movies/<int:id>', methods=['GET'])

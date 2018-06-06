@@ -1,6 +1,12 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<h1> Movie-Index </h1>
+{% with messages = get_flashed_messages(category_filter=["info"]) %}
+    {% if messages %}
+        {% for message in messages %}
+            <h1>{{ message }}</h1>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <a href="/">Return to Home</a>
 <table>
     <thead>
@@ -26,7 +32,13 @@
 </table>
 <h2>Add a new Movie</h2>
 
-
+{% with messages = get_flashed_messages(category_filter=["error"]) %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="warning">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <form method="post" action="/movies">
         <label for="name">Movie Name</label>
         <input type="text" name = "name" placeholder="Introduce the movie name" ><br>
@@ -37,6 +49,5 @@
         <label for="director">Movie Director</label>
         <input type="text" name = "director" placeholder="Introduce the film director"><br>
         <input type="submit" value="Send">
-        
 </form>
 {% endblock %}
