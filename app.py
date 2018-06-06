@@ -15,6 +15,10 @@ class Movie(db.Model):
 
     def __repr__(self):
         return '<id:%r>' % self.id
+
+@app.route('/', methods=['GET'])
+def inicio():
+    return render_template('hello.html')
     
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
@@ -61,7 +65,5 @@ def update(id):
     # return redirect(url_for('movie'))
     return render_template('search.html', movie=movie_update)
     
-
-
 if __name__=='__main__':
     app.run(debug = True)

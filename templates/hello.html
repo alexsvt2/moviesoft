@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title> Movie-Soft </title>
-    <link rel="stylesheet" href="/static/css/main.css">
-</head>
-<body>
-    
-    <nav>
-        <a href="/movies">Movie List</a>
-        <a href="#">Cursos</a>
-        <a href="#">Contacto</a>
-    </nav>
 
-{% block content%}
+<h1> Movie-Home </h1>
 
-{% endblock %}
+<nav>
+        <a href="/movies">MovieList</a>
+        <!-- <a class="login" href="#">Login</a> 
+        <a class="login" href="#">Register</a> -->
+      </nav>
+      <form class="busqueda">
+            <input type="text" placeholder="Search Movies">
+            <input type="submit" value="Search">
+          </form>
 
-</body>
 
-</html>
+
+
+
+
+
+
+
+
+
+{% extends 'base/base.html' %}     
