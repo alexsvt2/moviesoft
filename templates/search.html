@@ -9,6 +9,7 @@
             <th>Release year</th>
             <th>Category</th>
             <th>Director</th>
+            <th>Action</th>
         </tr>
     </thead>
         <tbody>
@@ -18,6 +19,8 @@
             <td>{{movie.year}}</td>
             <td>{{movie.category}}</td>
             <td>{{movie.director}}</td>
+            <td><a href="/movies/delete/{{movie.id}}">Delete</a></td>
+
             </tr>
         </tbody>
 </table>

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -42,14 +42,13 @@ def search(id):
         return render_template('search.html', movie=movie_search)    
     return "No fue encontrada"
 
-@app.route('/movies/<int:id>', methods=['DELETE'])
+@app.route('/movies/delete/<int:id>')
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    if request.method == 'DELETE':
-        db.session.delete(movie_delete)
-        db.session.commit()
-        return "Se ha eliminado de la base de Datos"
+    db.session.delete(movie_delete)
+    db.session.commit()
+    return redirect(url_for('movie'))
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
