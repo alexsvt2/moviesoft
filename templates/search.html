@@ -1,8 +1,35 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<h3>{{movie.id}}</h3>
-{{movie.name}}<br>
-{{movie.year}}<br>
-{{movie.category}}<br>
-{{movie.director}}<br>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Release year</th>
+            <th>Category</th>
+            <th>Director</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+            <td>{{movie.id}}</td>
+            <td>{{movie.name}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.category}}</td>
+            <td>{{movie.director}}</td>
+            </tr>
+        </tbody>
+</table>
+<h2>Update Movie Data</h2>
+<form method="post" action="/movies/{{movie.id}}">
+    <label for="name">Movie Name</label>
+    <input type="text" name = "name" placeholder="Introduce the movie name" value="{{movie.name}}" ><br>
+    <label for="year">Release Year</label>
+    <input type="text" name = "year" placeholder="Introduce the release year" value="{{movie.year}}"><br>
+    <label for="category">Movie Category</label>
+    <input type="text" name = "category" placeholder="Introduce the movie genre" value="{{movie.category}}"><br>
+    <label for="director">Movie Director</label>
+    <input type="text" name = "director" placeholder="Introduce the film director" value="{{movie.director}}"><br>
+    <input type="submit" value="Send">
+</form>
 {% endblock %}

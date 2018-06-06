@@ -36,7 +36,7 @@ def search(id):
     movie_search = Movie.query.filter_by(id=id).first()
     if movie_search:
         return render_template('search.html', movie=movie_search)    
-    return "No encontrado"
+    return "No fue encontrada"
 
 @app.route('/movies/<int:id>', methods=['DELETE'])
 def delete(id):
@@ -47,16 +47,21 @@ def delete(id):
         db.session.commit()
         return "Se ha eliminado de la base de Datos"
 
-@app.route('/movies/<int:id>', methods=['PUT'])
+@app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
     """Actualiza los datos de una pelicula"""
-    movie_update_filter = Movie.query.filter_by(id=id).first()
-    movie_update_filter.name = request.form['name']
-    movie_update_filter.year = request.form['year']
-    movie_update_filter.category = request.form['category']
-    movie_update_filter.director = request.form['director']
+    movie_update = Movie.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('search.html', movie=movie_update)
+    movie_update.name = request.form['name']
+    movie_update.year = request.form['year']
+    movie_update.category = request.form['category']
+    movie_update.director = request.form['director']
     db.session.commit()
-    return render_template('search.html', movie=movie_update_filter)
+    # return redirect(url_for('movie'))
+    return render_template('search.html', movie=movie_update)
+    
+
 
 if __name__=='__main__':
     app.run(debug = True)
