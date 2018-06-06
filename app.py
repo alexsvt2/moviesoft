@@ -18,7 +18,7 @@ class Movie(db.Model):
 
 @app.route('/', methods=['GET'])
 def inicio():
-    return render_template('hello.html')
+    return render_template('index.html')
     
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
@@ -32,7 +32,7 @@ def movie():
         db.session.commit()
         return redirect(url_for('movie'))
     elif request.method == 'GET':
-        return render_template('index.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
+        return render_template('movieindex.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
 
 @app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
@@ -65,5 +65,6 @@ def update(id):
     # return redirect(url_for('movie'))
     return render_template('search.html', movie=movie_update)
     
+
 if __name__=='__main__':
     app.run(debug = True)
