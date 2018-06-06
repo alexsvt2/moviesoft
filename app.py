@@ -27,6 +27,9 @@ def movie():
         year = request.form['year']
         category = request.form['category']
         director = request.form['director']
+        if not name or not year or not category or not director:
+            flash('Introduce todos los datos requeridos')
+            # return 'Introduce todos los campos'
         movie = Movie(name=name, year=year, category=category, director=director) #Instancia
         db.session.add(movie)
         db.session.commit()
@@ -61,6 +64,7 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     db.session.commit()
+    # return redirect(url_for('movie'))
     # return redirect(url_for('movie'))
     return render_template('search.html', movie=movie_update)
     
