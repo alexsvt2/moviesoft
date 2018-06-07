@@ -20,6 +20,10 @@ class Movie(db.Model):
 @app.route('/', methods=['GET'])
 def inicio():
     return render_template('index.html')
+
+@app.route('/movies/new_movie', methods=['GET', 'POST'])
+def new_movie():
+    return render_template('new_movie.html')
     
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
@@ -30,7 +34,7 @@ def movie():
         director = request.form['director']
         if not name or not year or not category or not director:
             flash('Please enter all the fields', 'error')
-            return redirect(url_for('movie'))
+            return redirect(url_for('new_movie'))
             # return 'Introduce todos los campos'
         movie = Movie(name=name, year=year, category=category, director=director) #Instancia
         db.session.add(movie)

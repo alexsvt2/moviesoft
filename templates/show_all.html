@@ -1,15 +1,20 @@
-<!--============== INICIO BIENVENIDA AL PROGRAMA ==============-->
 {% extends 'base/base.html' %}
 {% block content %}
-{% with messages = get_flashed_messages(category_filter=["info"]) %}
+<!--============== INICIO BIENVENIDA AL PROGRAMA ==============-->
+
+<!-- {% with messages = get_flashed_messages(category_filter=["info"]) %}
     {% if messages %}
         {% for message in messages %}
             <h1>{{ message }}</h1>
         {% endfor %}
     {% endif %}
-{% endwith %}
+{% endwith %} -->
 <!--============== FIN BIENVENIDA AL PROGRAMA ==============-->
-<a href="/">Return to Home</a>
+
+<div class="tool-bar">
+    <a href="/">Return to Home</a>
+    <a href="/movies/new_movie">Add a New Movie</a>
+</div>
 <table>
     <thead>
         <tr>
@@ -18,6 +23,7 @@
             <th>Release year</th>
             <th>Category</th>
             <th>Director</th>
+            <th>Action</th>
         </tr>
     </thead>
         <tbody>
@@ -28,12 +34,12 @@
             <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
+            <td><a class="delete-botton" href="/movies/delete/{{movie.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </tbody>
 
 </table>
-<h2>Add a new Movie</h2>
 <!--============== "INICIO INTRODUCE TODOS LOS CAMPOS ERROR" ==============-->
 {% with messages = get_flashed_messages(category_filter=["error"]) %}
     {% if messages %}
@@ -42,9 +48,9 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
-<hr>
+
 <!--============== "FIN EXPLICACION ERROR"" ==============-->
-<form method="post" action="/movies">
+<!-- <form method="post" action="/movies">
         <label for="name">Movie Name</label>
         <input type="text" name = "name" placeholder="Introduce the movie name" ><br>
         <label for="year">Release Year</label>
@@ -54,5 +60,5 @@
         <label for="director">Movie Director</label>
         <input type="text" name = "director" placeholder="Introduce the film director"><br>
         <input type="submit" value="Send">
-</form>
+</form> -->
 {% endblock %}
