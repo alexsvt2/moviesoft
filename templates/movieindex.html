@@ -1,3 +1,4 @@
+<!--============== INICIO BIENVENIDA AL PROGRAMA ==============-->
 {% extends 'base/base.html' %}
 {% block content %}
 {% with messages = get_flashed_messages(category_filter=["info"]) %}
@@ -7,6 +8,7 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+<!--============== FIN BIENVENIDA AL PROGRAMA ==============-->
 <a href="/">Return to Home</a>
 <table>
     <thead>
@@ -29,9 +31,10 @@
         </tr>
         {% endfor %}
     </tbody>
+
 </table>
 <h2>Add a new Movie</h2>
-
+<!--============== "INICIO INTRODUCE TODOS LOS CAMPOS ERROR" ==============-->
 {% with messages = get_flashed_messages(category_filter=["error"]) %}
     {% if messages %}
         {% for message in messages %}
@@ -39,6 +42,8 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+<hr>
+<!--============== "FIN EXPLICACION ERROR"" ==============-->
 <form method="post" action="/movies">
         <label for="name">Movie Name</label>
         <input type="text" name = "name" placeholder="Introduce the movie name" ><br>
