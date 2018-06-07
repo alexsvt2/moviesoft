@@ -71,8 +71,6 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     db.session.commit()
-    # return redirect(url_for('movie'))
-    # return redirect(url_for('movie'))
     return render_template('search.html', movie=movie_update)
     
 

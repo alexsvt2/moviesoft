@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5 {
   color: red
 }
 
-.delete-button {
+.delete-botton {
   background-color: red;
   border: none;
   color: white;
@@ -40,19 +40,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .tool-bar {
+  padding: 10px, 50px;
 }
-
-.add-button {
-  background-color: green;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
 
 a {
   color: #377ba8;
