@@ -18,6 +18,7 @@
             <th>Release year</th>
             <th>Category</th>
             <th>Director</th>
+            <th>Action</th>
         </tr>
     </thead>
         <tbody>
@@ -28,6 +29,8 @@
             <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
+            <td><a class="delete-botton" href="/movies/delete/1">Delete</a></td>
+
         </tr>
         {% endfor %}
     </tbody>
