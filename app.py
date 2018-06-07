@@ -38,7 +38,7 @@ def movie():
         return redirect(url_for('movie'))
     elif request.method == 'GET':
         flash('Welcome', 'info')
-        return render_template('movieindex.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
+        return render_template('show_all.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
 
 @app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
