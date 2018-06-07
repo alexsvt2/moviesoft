@@ -13,28 +13,30 @@
 
 <div class="tool-bar">
     <a href="/">Return to Home</a>
-    <a href="/movies/new_movie">Add a New Movie</a>
+    <a class="add-button" href="/movies/new_movie">Add a New Movie</a>
 </div>
 <table>
     <thead>
         <tr>
-            <th>Id</th>
+            <!-- <th>Id</th> -->
             <th>Name</th>
-            <th>Release year</th>
-            <th>Category</th>
-            <th>Director</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+            <th>Directed by</th>
+            <th>Distributed by</th>
             <th>Action</th>
         </tr>
     </thead>
         <tbody>
         {% for movie in movies %}
         <tr>
-            <td><a href="/movies/{{movie.id}}">{{movie.id}}</a></td>
+            <!-- <td><a href="/movies/{{movie.id}}">{{movie.id}}</a></td> -->
             <td><a href="/movies/{{movie.id}}">{{movie.name}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
-            <td><a class="delete-botton" href="/movies/delete/{{movie.id}}">Delete</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.Distributed_by}}</a></td>
+            <td><a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </tbody>
