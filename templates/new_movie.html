@@ -3,6 +3,11 @@
 
 {% block content%}
 
+<a href="/movies">Return to Movie List</a>
+<hr>
+<h2>Add a new Movie</h2>
+<!-- 'Error' Introduce todos los Datos
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 {% with messages = get_flashed_messages(category_filter=["error"]) %}
     {% if messages %}
         {% for message in messages %}
@@ -11,18 +16,28 @@
     {% endif %}
 {% endwith %}
 
-<form method="post" action="/movies">
-    <label for="name">Movie Name</label>
-    <input type="text" name = "name" placeholder="Introduce the movie name" ><br>
-    <label for="year">Release Year</label>
-    <input type="date" name = "year" placeholder="Introduce the release year" ><br>
-    <label for="category">Movie Category</label>
-    <input type="text" name = "category" placeholder="Introduce the movie genre"><br>
-    <label for="director">Movie Director</label>
-    <input type="text" name = "director" placeholder="Introduce the film director"><br>
-    <input type="submit" value="Send">
-</form>
+<!-- Formulario New Movie
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="form">
+        <form method="post" action="/movies">
+          <label for="name">Movie Name</label>
+          <input type="text" name = "name" placeholder="Introduce the movie name" >
+      
+          <label for="date">Release Date</label>
+          <input type="month" name = "year" placeholder="Introduce the release year" >
+
+          <label for="category">Movie Genre</label>
+          <input type="text" name = "category" placeholder="Introduce the movie genre">
+
+          <label for="director">Movie Director</label>
+          <input type="text" name = "director" placeholder="Introduce the film director">
+
+          <label for="distributed-by">Distributed by</label>
+          <input type="text" name="distributed-by" placeholder="Enter the distributor of the movie" >
+
+          <input type="submit" value="Submit">
+        </form>
+</div>
 
 <!-- New_movie.html -->
-
 {% endblock %}

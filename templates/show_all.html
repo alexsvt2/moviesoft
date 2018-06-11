@@ -11,10 +11,11 @@
 {% endwith %} -->
 <!--============== FIN BIENVENIDA AL PROGRAMA ==============-->
 
-<div class="tool-bar">
+<article>
     <a href="/">Return to Home</a>
-    <a class="add-button" href="/movies/new_movie">Add a New Movie</a>
-</div>
+    <a href="/movies/new_movie">Add a New Movie</a>
+</article>
+<hr>
 <table>
     <thead>
         <tr>
@@ -24,6 +25,7 @@
             <th>Genre</th>
             <th>Directed by</th>
             <th>Distributed by</th>
+            <th>Picture</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -35,8 +37,10 @@
             <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.Distributed_by}}</a></td>
+            <td><a href="/movies/{{movie.id}}">{{movie.distributed_by}}</a></td>
+            <td><a href="/movies/{{movie.id}}">Imagen</a></td>
             <td><a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a></td>
+
         </tr>
         {% endfor %}
     </tbody>
@@ -52,6 +56,7 @@
 {% endwith %}
 
 <!--============== "FIN EXPLICACION ERROR"" ==============-->
+
 <!-- <form method="post" action="/movies">
         <label for="name">Movie Name</label>
         <input type="text" name = "name" placeholder="Introduce the movie name" ><br>

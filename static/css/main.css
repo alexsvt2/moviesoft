@@ -1,82 +1,77 @@
-
-nav {
-  overflow:hidden;
-  display: flex;
-  background-color: #377ba8;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: #f9f9f9;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  background-color: ;
-}
-
 body {
-  font-family: Helvetica
-}
-
-h1, h2, h3, h4, h5 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #377ba8;
+  text-align: left;
+  font-style: normal;
 }
 
-.warning {
-  color: red
-}
 
-.delete-botton {
-  background-color: red;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.tool-bar {
-  padding: 10px, 50px;
-}
+/* 
+Estilo en los Links ------------------------------- */
 
 a {
-  color: #377ba8;
+  color: #1EAEDB; }
+
+
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+  color: black;
 }
 
-table, td, th {    
-  border: 1px solid black;
-  text-align: center;
+a:active {
+  text-decoration: underline;
+}
+a:hover {
+  color: #1EAEDB;
 }
 
+
+
+
+
+/* 
+Tabla --------------------------------------------- */
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
 th, td {
-  padding: 15px;
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-input[type=text] {
+/* Input text and month
+-------------------------------------------------- */
+input[type=text],input[type=month], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
-  border: 1px solid #555;
 }
 
 input[type=submit] {
-  background-color: #377ba8;
-  border: none;
+  width: 100%;
+  background-color:#008CBA;
   color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
+/* Sombra en las formas
+-------------------------------------------------- */
+
+.form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}

@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <a href="/movies">Return to Movie List</a>
+<hr>
 <!-- <table>
     <thead>
         <tr>
@@ -24,16 +25,34 @@
             </tr>
         </tbody>
 </table> -->
+
+
 <h2>Update Movie Data</h2>
+
+
+<div class="container">
 <form method="post" action="/movies/{{movie.id}}">
     <label for="name">Movie Name</label>
-    <input type="text" name = "name" placeholder="Introduce the movie name" value="{{movie.name}}" ><br>
-    <label for="year">Release Year</label>
-    <input type="text" name = "year" placeholder="Introduce the release year" value="{{movie.year}}"><br>
-    <label for="category">Movie Category</label>
-    <input type="text" name = "category" placeholder="Introduce the movie genre" value="{{movie.category}}"><br>
-    <label for="director">Movie Director</label>
-    <input type="text" name = "director" placeholder="Introduce the film director" value="{{movie.director}}"><br>
+    <input type="text" name = "name" placeholder="Enter the name of the movie" value="{{movie.name}}" >
+
+
+    <label for="year">Release date</label>
+    <input type="month" name = "year" placeholder="Enter the release date of the movie" value="{{movie.year}}">
+
+
+    <label for="category">Genre</label>
+    <input type="text" name = "category" placeholder="Enter the genre of the movie" value="{{movie.category}}">
+
+
+    <label for="director">Directed by</label>
+    <input type="text" name = "director" placeholder="Enter the director of the movie" value="{{movie.director}}">
+
+    <label for="distributed-by">Distributed by</label>
+     <input type="text" name="distributed-by" placeholder="Enter the distributor of the movie" > 
+
     <input type="submit" value="Send">
 </form>
+</div>
+<!-- search.html -->
 {% endblock %}
+
