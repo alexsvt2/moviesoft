@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-# from werkzeug import secure_filename
+from werkzeug import secure_filename
 
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagendb'
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg'])
