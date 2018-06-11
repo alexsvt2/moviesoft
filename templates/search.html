@@ -1,5 +1,4 @@
-{% extends 'base/base.html' %}
-{% block content %}
+{% extends 'base/base.html' %} {% block content %}
 <a href="/movies">Return to Movie List</a>
 <hr>
 <!-- <table>
@@ -31,28 +30,29 @@
 
 
 <div class="container">
-<form method="post" action="/movies/{{movie.id}}">
-    <label for="name">Movie Name</label>
-    <input type="text" name = "name" placeholder="Enter the name of the movie" value="{{movie.name}}" >
+    <form method="post" action="/movies/{{movie.id}}">
+        <label for="name">Movie Name</label>
+        <input type="text" name="name" placeholder="Enter the name of the movie" value="{{movie.name}}">
 
 
-    <label for="year">Release date</label>
-    <input type="month" name = "year" placeholder="Enter the release date of the movie" value="{{movie.year}}">
+        <label for="year">Release date</label>
+        <input type="month" name="year" placeholder="Enter the release date of the movie" value="{{movie.year}}">
 
 
-    <label for="category">Genre</label>
-    <input type="text" name = "category" placeholder="Enter the genre of the movie" value="{{movie.category}}">
+        <label for="category">Genre</label>
+        <input type="text" name="category" placeholder="Enter the genre of the movie" value="{{movie.category}}">
 
 
-    <label for="director">Directed by</label>
-    <input type="text" name = "director" placeholder="Enter the director of the movie" value="{{movie.director}}">
+        <label for="director">Directed by</label>
+        <input type="text" name="director" placeholder="Enter the director of the movie" value="{{movie.director}}">
 
-    <label for="distributed-by">Distributed by</label>
-     <input type="text" name="distributed-by" placeholder="Enter the distributor of the movie" > 
+        <label for="distributor">Distributed by</label>
+        <input type="text" name="distributor" placeholder="Enter the distributor of the movie" value="{{movie.distributor}}">
 
-    <input type="submit" value="Send">
-</form>
+        <input type="file" name="pic" accept="image/*">
+
+        <input type="submit" value="Send">
+    </form>
 </div>
 <!-- search.html -->
 {% endblock %}
-

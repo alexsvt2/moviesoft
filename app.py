@@ -1,9 +1,15 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
+import os
+from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+# from werkzeug import secure_filename
+
+UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagendb'
+ALLOWED_EXTENSIONS = set(['png','jpg','jpeg'])
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
 
@@ -13,6 +19,8 @@ class Movie(db.Model):
     year = db.Column(db.Integer, unique=False, nullable=False)
     category = db.Column(db.String(50), unique=False, nullable=False)
     director = db.Column(db.String(50), unique=False, nullable=False)
+    distributor = db.Column(db.String(50), unique=False, nullable=False)
+    imagen = db.Column(db.String(50), unique=False)
 
     def __repr__(self):
         return '<id:%r>' % self.id
@@ -32,11 +40,12 @@ def movie():
         year = request.form['year']
         category = request.form['category']
         director = request.form['director']
-        if not name or not year or not category or not director:
+        distributor = request.form['distributor']
+        if not name or not year or not category or not director or not distributor:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
             # return 'Introduce todos los campos'
-        movie = Movie(name=name, year=year, category=category, director=director) #Instancia
+        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor) #Instancia
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
@@ -70,6 +79,7 @@ def update(id):
     movie_update.year = request.form['year']
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
+    movie_update.distributor = request.form['distributor']
     db.session.commit()
     return render_template('search.html', movie=movie_update)
     
