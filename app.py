@@ -41,11 +41,12 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         distributor = request.form['distributor']
+        imagen = request.files['imagen']
+        imagen.save(secure_filename(imagen.filename))
         if not name or not year or not category or not director or not distributor:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
-            # return 'Introduce todos los campos'
-        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor) #Instancia
+        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, imagen=imagenname) #Instancia
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))

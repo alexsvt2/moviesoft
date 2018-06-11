@@ -12,7 +12,7 @@
 <!-- Formulario New Movie
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="form">
-    <form method="POST" action="/movies">
+    <form method="POST" action="/movies" enctype="multipart/form-data">
         <label for="name">Movie Name</label>
         <input type="text" name="name" placeholder="Introduce the movie name">
 
@@ -27,6 +27,9 @@
 
         <label for="distributor">Distributed by</label>
         <input type="text" name="distributor" placeholder="Enter the distributor of the movie">
+
+        <label for="imagen">Imagen</label>
+        <input type="file" name="imagen">
 
         <input type="submit" value="Submit">
     </form>
