@@ -47,9 +47,7 @@ def movie():
         if not name or not year or not category or not director or not distributor:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
-        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, imagen=imagen_name) #Instancia
-        # movie = add_movie(request.form['name'], request.form['year'], request.form['director'], filename) 
-        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, imagen=imagen_name) #Instancia        # movie = add_movie(request.form['name'], request.form['year'], request.form['director'], filename)         # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
