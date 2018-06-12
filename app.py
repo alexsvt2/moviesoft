@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagendb'
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg'])
@@ -41,12 +41,12 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         distributor = request.form['distributor']
-        imagen = request.files['imagen']
-        imagen.save(secure_filename(imagen.filename))
+        imagen = request.files['imagen'] # Ingresa la imagen a la forma
+        imagen.save(secure_filename(imagen.filename)) # Guarda la Imagen en la carpeta de la aplicacion
         if not name or not year or not category or not director or not distributor:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
-        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, imagen=imagenname) #Instancia
+        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, ) #Instancia
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
