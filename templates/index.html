@@ -10,12 +10,12 @@
 
 
 
-<main>
+<main class="contenedor-padre">
 {% for portadas in movies %}
     <div class="contenedor-portadas">
-        <h3>{{portadas.name}}</h3>
 {% if portadas.imagen != None %}
-<img src="{{url_for('static', filename = portadas.imagen)}}" alt="">
+<img src="{{url_for('static', filename = portadas.imagen)}}" alt="" height="400">
+<h3>{{portadas.name}}</h3>
     </div>
 {% endif%}
 {% endfor %}
