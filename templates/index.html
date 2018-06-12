@@ -6,6 +6,21 @@
     <hr>
     <a href="/movies">Ir a la Lista de Peliculas</a>
 </article>
+
+
+
+
+<main>
+{% for portadas in movies %}
+    <div class="contenedor-portadas">
+        <h3>{{portadas.name}}</h3>
+{% if portadas.imagen != None %}
+<img src="{{url_for('static', filename = portadas.imagen)}}" alt="">
+    </div>
+{% endif%}
+{% endfor %}
+</main>
+
 <!-- Index.html -->
 {% endblock %}
 

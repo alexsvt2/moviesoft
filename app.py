@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash, sen
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
+UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static' # Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg'])
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ class Movie(db.Model):
 
 @app.route('/', methods=['GET'])
 def inicio():
-    return render_template('index.html')
+    return render_template('index.html', movies=Movie.query.all()) #Muestra las portadas en Index
 
 @app.route('/movies/new_movie', methods=['GET', 'POST'])
 def new_movie():
@@ -82,6 +82,7 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
+    movie_update.imagen = request.form['imagen']
     db.session.commit()
     return render_template('search.html', movie=movie_update)
     
