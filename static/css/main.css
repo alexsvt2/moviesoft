@@ -62,7 +62,6 @@ input[type=submit] {
 
 /* Sombra en las formas
 -------------------------------------------------- */
-
 .form,.container {
   border-radius: 5px;
   background-color: #f2f2f2;
@@ -74,6 +73,3 @@ input[type=submit] {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-/* .contenedor-portadas {
-} */

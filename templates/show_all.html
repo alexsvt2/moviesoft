@@ -1,16 +1,4 @@
-{% extends 'base/base.html' %}
-{% block content %}
-<!--============== INICIO BIENVENIDA AL PROGRAMA ==============-->
-
-<!-- {% with messages = get_flashed_messages(category_filter=["info"]) %}
-    {% if messages %}
-        {% for message in messages %}
-            <h1>{{ message }}</h1>
-        {% endfor %}
-    {% endif %}
-{% endwith %} -->
-<!--============== FIN BIENVENIDA AL PROGRAMA ==============-->
-
+{% extends 'base/base.html' %} {% block content %}
 <article>
     <a href="/">Return to Home</a>
     <a href="/movies/new_movie">Add a New Movie</a>
@@ -29,30 +17,37 @@
             <th>Action</th>
         </tr>
     </thead>
-        <tbody>
+    <tbody>
         {% for movie in movies %}
         <tr>
             <!-- <td><a href="/movies/{{movie.id}}">{{movie.id}}</a></td> -->
-            <td><a href="/movies/{{movie.id}}">{{movie.name}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.year}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.distributor}}</a></td>
-            <td><img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="400"></td>
-            <td><a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a></td>
-
+            <td>
+                <a href="/movies/{{movie.id}}">{{movie.name}}</a>
+            </td>
+            <td>
+                <a href="/movies/{{movie.id}}">{{movie.year}}</a>
+            </td>
+            <td>
+                <a href="/movies/{{movie.id}}">{{movie.category}}</a>
+            </td>
+            <td>
+                <a href="/movies/{{movie.id}}">{{movie.director}}</a>
+            </td>
+            <td>
+                <a href="/movies/{{movie.id}}">{{movie.distributor}}</a>
+            </td>
+            <td>
+                <img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="200">
+            </td>
+            <td>
+                <a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 
 </table>
 <!--============== "INICIO INTRODUCE TODOS LOS CAMPOS ERROR" ==============-->
-{% with messages = get_flashed_messages(category_filter=["error"]) %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="warning">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-
-{% endblock %}
+{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+<div class="warning">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %} {% endblock %}

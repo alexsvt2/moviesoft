@@ -3,8 +3,9 @@ from flask import Flask, request, render_template, redirect, url_for, flash, sen
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static' # Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
-ALLOWED_EXTENSIONS = set(['png','jpg','jpeg'])
+# Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
+UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -12,6 +13,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
+
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,14 +27,18 @@ class Movie(db.Model):
     def __repr__(self):
         return '<id:%r>' % self.id
 
+
 @app.route('/', methods=['GET'])
 def inicio():
-    return render_template('index.html', movies=Movie.query.all()) #Muestra las portadas en Index
+    # Muestra las portadas en Index
+    return render_template('index.html', movies=Movie.query.all())
+
 
 @app.route('/movies/new_movie', methods=['GET', 'POST'])
 def new_movie():
     return render_template('new_movie.html')
-    
+
+
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
     if request.method == 'POST':
@@ -41,35 +47,43 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         distributor = request.form['distributor']
-        imagen = request.files['imagen'] # Ingresa la imagen a la forma
+        imagen = request.files['imagen']  # Ingresa la imagen a la forma
         imagen_name = secure_filename(imagen.filename)
         imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
         if not name or not year or not category or not director or not distributor:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
-        movie = Movie(name=name, year=year, category=category, director=director, distributor=distributor, imagen=imagen_name) #Instancia        # movie = add_movie(request.form['name'], request.form['year'], request.form['director'], filename)         # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Instancia        # movie = add_movie(request.form['name'], request.form['year'], request.form['director'], filename)         # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        movie = Movie(name=name, year=year, category=category,
+                      director=director, distributor=distributor, imagen=imagen_name)
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
     elif request.method == 'GET':
         flash('Welcome', 'info')
-        return render_template('show_all.html', movies=Movie.query.all()) # Esto devuelve el index con la lista de todas las peliculas
+        # Esto devuelve el index con la lista de todas las peliculas
+        return render_template('show_all.html', movies=Movie.query.all())
+
 
 @app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
     """Se realiza la busqueda de la pelicula utilizando el id en la ruta"""
     movie_search = Movie.query.filter_by(id=id).first()
     if movie_search:
-        return render_template('search.html', movie=movie_search)    
+        return render_template('search.html', movie=movie_search)
     return "No fue encontrada"
+
 
 @app.route('/movies/delete/<int:id>')
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
+    """aqui va la linea que borra la imagen alojada en el servidor"""
+    
     db.session.delete(movie_delete)
     db.session.commit()
     return redirect(url_for('movie'))
+
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
@@ -85,7 +99,7 @@ def update(id):
     movie_update.imagen = request.form['imagen']
     db.session.commit()
     return render_template('search.html', movie=movie_update)
-    
 
-if __name__=='__main__':
-    app.run(debug = True)
+
+if __name__ == '__main__':
+    app.run(debug=True)

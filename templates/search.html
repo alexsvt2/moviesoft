@@ -29,6 +29,9 @@
 <h2>Update Movie Data</h2>
 
 
+
+
+
 <div class="container">
     <form method="post" action="/movies/{{movie.id}}">
         <label for="name">Movie Name</label>
@@ -48,6 +51,9 @@
 
         <label for="distributor">Distributed by</label>
         <input type="text" name="distributor" placeholder="Enter the distributor of the movie" value="{{movie.distributor}}">
+
+        <img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="200">
+        <br>
 
         <label for="imagen">Imagen</label>
         <input type="file" name="imagen" value="{{movie.imagen}}">

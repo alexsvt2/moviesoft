@@ -1,6 +1,4 @@
-{% extends 'base/base.html' %} 
-
-{% block content%}
+{% extends 'base/base.html' %} {% block content%}
 <article class="welcome">
     <h1>Bienvenido a MovieSoft</h1>
     <hr>
@@ -9,19 +7,15 @@
 
 
 
-
 <main class="contenedor-padre">
-{% for portadas in movies %}
-    <div class="contenedor-portadas">
-{% if portadas.imagen != None %}
-<img src="{{url_for('static', filename = portadas.imagen)}}" alt="" height="400">
-<h3>{{portadas.name}}</h3>
+    {% for movie in movies %}
+    <div class="contenedor-movie">
+        {% if movie.imagen != None %}
+        <img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="300">
+        <h3>{{movie.name}}</h3>
     </div>
-{% endif%}
-{% endfor %}
+    {% endif%} {% endfor %}
 </main>
 
 <!-- Index.html -->
 {% endblock %}
-
-
