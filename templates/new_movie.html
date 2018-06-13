@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %} {% block content%}
+
+<a href="/movies">Return to Movie List</a>
+<hr>
+<h2>Add a new Movie</h2>
+<!-- 'Error' Introduce todos los Datos
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+<div class="warning">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<!-- Formulario New Movie
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="form">
+    <form method="POST" action="/movies" enctype="multipart/form-data">
+        <label for="name">Movie Name</label>
+        <input type="text" name="name" placeholder="Introduce the movie name">
+
+        <label for="date">Release Date</label>
+        <input type="text" name="year" placeholder="Introduce the release year">
+
+        <label for="category">Movie Genre</label>
+        <input type="text" name="category" placeholder="Introduce the movie genre">
+
+        <label for="director">Movie Director</label>
+        <input type="text" name="director" placeholder="Introduce the film director">
+
+        <label for="distributor">Distributed by</label>
+        <input type="text" name="distributor" placeholder="Enter the distributor of the movie">
+
+        <label for="imagen">Imagen</label>
+        <input type="file" name="imagen">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<!-- New_movie.html -->
+{% endblock %}

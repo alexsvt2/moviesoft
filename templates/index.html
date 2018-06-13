@@ -1,15 +1,27 @@
 {% extends 'base/base.html' %} 
+
 {% block content%}
-<h1> Movie-Home </h1>
-<nav>
-        <a href="/movies">Movie List</a>
-        <!-- <a class="login" href="#">Login</a> 
-        <a class="login" href="#">Register</a>
-      </nav>
-      <form method="GET"="busqueda">
-            <input type="text" placeholder="Search Movies">
-            <input type="submit" value="Search">
-          </form> -->
+<article class="welcome">
+    <h1>Bienvenido a MovieSoft</h1>
+    <hr>
+    <a href="/movies">Ir a la Lista de Peliculas</a>
+</article>
+
+
+
+
+<main class="contenedor-padre">
+{% for portadas in movies %}
+    <div class="contenedor-portadas">
+{% if portadas.imagen != None %}
+<img src="{{url_for('static', filename = portadas.imagen)}}" alt="" height="400">
+<h3>{{portadas.name}}</h3>
+    </div>
+{% endif%}
+{% endfor %}
+</main>
+
+<!-- Index.html -->
 {% endblock %}
 
 
