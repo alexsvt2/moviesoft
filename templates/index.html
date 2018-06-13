@@ -3,6 +3,7 @@
     <h1>Bienvenido a MovieSoft</h1>
     <hr>
     <a href="/movies">Ir a la Lista de Peliculas</a>
+    
 </article>
 
 
@@ -12,10 +13,12 @@
     <div class="contenedor-movie">
         {% if movie.imagen != None %}
         <img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="300">
-        <h3>{{movie.name}}</h3>
+        <div class="Title-Movie-Year"><h3>{{movie.name}} {{movie.year}}</h3></div>
     </div>
     {% endif%} {% endfor %}
 </main>
 
 <!-- Index.html -->
 {% endblock %}
+
+]

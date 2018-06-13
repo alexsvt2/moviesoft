@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
+from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
@@ -47,13 +47,15 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         distributor = request.form['distributor']
-        imagen = request.files['imagen']  # Ingresa la imagen a la forma
+        if not 'imagen' in request.files:
+            flash('Please enter the image', 'error')
+            return redirect(url_for('new_movie'))
+        imagen = request.files['imagen']
         imagen_name = secure_filename(imagen.filename)
         imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
-        if not name or not year or not category or not director or not distributor:
+        if not name or not year or not category or not director or not distributor and 'imagen' not in request.files:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
-        # Instancia        # movie = add_movie(request.form['name'], request.form['year'], request.form['director'], filename)         # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         movie = Movie(name=name, year=year, category=category,
                       director=director, distributor=distributor, imagen=imagen_name)
         db.session.add(movie)
@@ -78,9 +80,8 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    """aqui va la linea que borra la imagen alojada en el servidor"""
-    
-    db.session.delete(movie_delete)
+    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    db.session.delete(movie_delete) # Aun cuando aveves la imagen fue modificada al querer borrar, la imagen desaparece y no actualiza entonces al borrar, provoca un error
     db.session.commit()
     return redirect(url_for('movie'))
 
@@ -96,7 +97,11 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
-    movie_update.imagen = request.form['imagen']
+    # imagen = request.files['imagen']
+    # os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
+    # imagen_name = secure_filename(imagen.filename)
+    # imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
+    # movie_update.imagen = request.form['imagen'] # NO
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
