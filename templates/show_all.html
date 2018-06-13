@@ -38,7 +38,7 @@
             <td><a href="/movies/{{movie.id}}">{{movie.category}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.director}}</a></td>
             <td><a href="/movies/{{movie.id}}">{{movie.distributor}}</a></td>
-            <td><a href="/movies/{{movie.id}}">{{movie.imagen}}</a></td>
+            <td><img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="400"></td>
             <td><a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a></td>
 
         </tr>

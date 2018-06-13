@@ -9,48 +9,10 @@ Estilo en los Links ------------------------------- */
 a {
   color: #1EAEDB; }
 
-<<<<<<< HEAD
-.tool-bar {
-  background-color: #377ba8;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.delete-botton {
-  background-color: red;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-=======
 
 a:link {
->>>>>>> 0b3546bc8901f5a548c56b2afbf11b95d9608875
   text-decoration: none;
 }
-<<<<<<< HEAD
-
-.add-botton {
-  background-color: green;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-
-table, td, th {    
-  border: 1px solid black;
-  text-align: center;
-=======
 a:visited {
   text-decoration: none;
   color: black;
@@ -61,7 +23,6 @@ a:active {
 }
 a:hover {
   color: #1EAEDB;
->>>>>>> 0b3546bc8901f5a548c56b2afbf11b95d9608875
 }
 
 /* 
@@ -103,7 +64,7 @@ input[type=submit] {
 /* Sombra en las formas
 -------------------------------------------------- */
 
-.form {
+.form,.container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
