@@ -80,7 +80,7 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    # os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     db.session.delete(movie_delete) # Aun cuando aveves la imagen fue modificada al querer borrar, la imagen desaparece y no actualiza entonces al borrar, provoca un error
     db.session.commit()
     return redirect(url_for('movie'))
@@ -97,15 +97,7 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
-    print(request.files['imagen'])
-    if 'imagen' in request.files:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
-        imagen = request.files['imagen']
-        print('imagen')
-        imagen_name = secure_filename(imagen.filename)
-        print('imagen_name')
-        imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
-    db.session.commit()
+    # movie_update.imagen = request.files['imagen']
     return render_template('search.html', movie=movie_update)
 
 
