@@ -47,7 +47,8 @@
     </tbody>
 
 </table>
-<!--============== "INICIO INTRODUCE TODOS LOS CAMPOS ERROR" ==============-->
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
 <div class="warning">{{ message }}</div>
-{% endfor %} {% endif %} {% endwith %} {% endblock %}
+{% endfor %} {% endif %} {% endwith %} 
+
+{% endblock %}

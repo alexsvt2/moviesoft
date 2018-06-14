@@ -1,36 +1,15 @@
 {% extends 'base/base.html' %} {% block content %}
 <a href="/movies">Return to Movie List</a>
 <hr>
-<!-- <table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Release year</th>
-            <th>Category</th>
-            <th>Director</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-        <tbody>
-            <tr>
-            <td>{{movie.id}}</td>
-            <td>{{movie.name}}</td>
-            <td>{{movie.year}}</td>
-            <td>{{movie.category}}</td>
-            <td>{{movie.director}}</td>
-            <td><a class="delete-botton" href="/movies/delete/{{movie.id}}">Delete</a></td>
-
-            </tr>
-        </tbody>
-</table> -->
-
-
 <h2>Update Movie Data</h2>
+<!-- 'Error' Introduce todos los Datos
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+<div>{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
 
-
-
-
+<!-- Formulario Update Movie
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 <div class="container">
     <form method="post" action="/movies/{{movie.id}}" enctype="multipart/form-data">

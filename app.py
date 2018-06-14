@@ -10,6 +10,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
@@ -26,6 +27,10 @@ class Movie(db.Model):
 
     def __repr__(self):
         return '<id:%r>' % self.id
+
+def allowed_file(filename): ########### Hace falta configurar para poder restringir que tipos de archivos se pueden subir
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/', methods=['GET'])
@@ -81,7 +86,7 @@ def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
-    db.session.delete(movie_delete) # Aun cuando aveves la imagen fue modificada al querer borrar, la imagen desaparece y no actualiza entonces al borrar, provoca un error
+    db.session.delete(movie_delete)
     db.session.commit()
     return redirect(url_for('movie'))
 
@@ -97,7 +102,6 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
-    # movie_update.imagen = request.files['imagen']
     return render_template('search.html', movie=movie_update)
 
 
