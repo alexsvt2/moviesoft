@@ -1,12 +1,11 @@
 {% extends 'base/base.html' %} {% block content%}
-<article class="welcome">
-    <h1>Bienvenido a MovieSoft</h1>
-    <hr>
-    <a href="/movies">Go to the Movie Index</a>
-    
-</article>
 
-
+<nav>
+    <img class ="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <a class="active" href="/movies">Movies</a>
+    <a class="login" href="#">Entrar</a>
+    <a class="login" href="#">Registrate</a>
+</nav>  
 
 <main class="contenedor-padre">
     {% for movie in movies %}
