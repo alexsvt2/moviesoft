@@ -10,7 +10,6 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
@@ -27,10 +26,6 @@ class Movie(db.Model):
 
     def __repr__(self):
         return '<id:%r>' % self.id
-
-def allowed_file(filename): ########### Hace falta configurar para poder restringir que tipos de archivos se pueden subir
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/', methods=['GET'])
@@ -102,6 +97,9 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
+    if 'imagen' not in request.files:
+        flash('No hay para imagen para actualizar', 'error')
+    db.session.commit()
     return render_template('search.html', movie=movie_update)
 
 
