@@ -1,31 +1,40 @@
+
 body {
   font-family: Helvetica, sans-serif;
   text-align: left;
   font-style: normal;
+  background-color: black;
+  color: white;
+}
+
+.form,.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  color: black;
 }
 /* 
 Estilo en los Links ------------------------------- */
 
-/* a {
-  color: #1EAEDB; }
+a {
+  color: yellow; }
 
 a:link {
   text-decoration: none;
+  color: red
 }
 a:visited {
   text-decoration: none;
-  color: black;
+  color: red;
 }
 
 a:active {
   text-decoration: underline;
 }
 a:hover {
-  color: #1EAEDB;
-} */
+  color: yellow;
+}
 
-/* 
-Tabla --------------------------------------------- */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -39,7 +48,7 @@ th, td {
 
 /* Input text and month
 -------------------------------------------------- */
-input[type=text],input[type=month],input[type=file], select {
+input[type=text],input[type=file], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -62,28 +71,24 @@ input[type=submit] {
 
 /* Sombra en las formas
 -------------------------------------------------- */
-.form,.container {
+.form,.container,table {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  color: black
 }
 
 .contenedor-padre {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 
-* {
-  color: white;
-}
  
 body {
-  font-family: Helvetica, sans-serif;
-  text-align: left;
-  font-style: normal;
-  background-color: black;
+
 }
 
 /* 
@@ -91,9 +96,11 @@ Tabla --------------------------------------------- */
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color: #f2f2f2;
 }
 
 th, td {
+  color: #000;
   padding: 14px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -146,18 +153,6 @@ nav a {
 nav a:hover {
   background-color: #c71c22;
   color: #f9f9f9;
-}
-
-/* nav a.active {
-  background-color: #ea1a25;
-  color: #fbf9f8;
-} */
-
-.form,.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  color: black;
 }
 
 label {
