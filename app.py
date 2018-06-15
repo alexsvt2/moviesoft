@@ -23,7 +23,8 @@ class Movie(db.Model):
     director = db.Column(db.String(50), unique=False, nullable=False)
     distributor = db.Column(db.String(50), unique=False, nullable=False)
     imagen = db.Column(db.String(50), unique=False)
-
+    synopsis = db.Column(db.String(500), unique=False, nullable=True)
+    
     def __repr__(self):
         return '<id:%r>' % self.id
 
@@ -47,6 +48,7 @@ def movie():
         category = request.form['category']
         director = request.form['director']
         distributor = request.form['distributor']
+        synopsis = request.form['synopsis']
         if not 'imagen' in request.files:
             flash('Please enter the image', 'error')
             return redirect(url_for('new_movie'))
@@ -57,7 +59,7 @@ def movie():
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
         movie = Movie(name=name, year=year, category=category,
-                      director=director, distributor=distributor, imagen=imagen_name)
+                      director=director, distributor=distributor, imagen=imagen_name, synopsis=synopsis)
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
@@ -97,6 +99,7 @@ def update(id):
     movie_update.category = request.form['category']
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
+    movie_update.synopsis = request.form['synopsis']
     if 'imagen' not in request.files:
         flash('No hay para imagen para actualizar', 'error')
     db.session.commit()
