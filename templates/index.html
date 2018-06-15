@@ -2,20 +2,23 @@
 
 <nav>
     <img class ="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
-    <a class="active" href="/movies">Movies</a>
-    <a class="login" href="#">Entrar</a>
-    <a class="login" href="#">Registrate</a>
-</nav>  
+    
+    <a href="/movies">Movies</a>
+    <div class="login">
+        <a href="#">Entrar</a>
+        <a href="#">Registrate</a>
+    </div>
+</nav>
 
-<main class="contenedor-padre">
+<div class="contenedor-padre">
     {% for movie in movies %}
-    <div class="contenedor-movie">
+    <div class="contenedor-hijo">
         {% if movie.imagen != None %}
-        <img src="{{url_for('static', filename = movie.imagen)}}" alt="" height="300">
-        <div class="Title-Movie-Year"><h3>{{movie.name}} {{movie.year}}</h3></div>
+        <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
+        <div><h3>{{movie.name}}</h3></div>
     </div>
     {% endif%} {% endfor %}
-</main>
+</div>
 
 <!-- Index.html -->
 {% endblock %}
