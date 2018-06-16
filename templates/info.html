@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+
+<h1>{{movie.name}}</h1>
+<img src="{{url_for('static', filename = movie.imagen)}}" height="500">
+<p>{{movie.synopsis}}</p>
+
+{%endblock%}
+

@@ -16,9 +16,12 @@
         {% if movie.imagen != None %}
         <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
         <div><h3>{{movie.name}}</h3></div>
+        <a href="/movies/info/{{movie.id}}">Ir a Perfil de PELICULA</a>
+        <a href="{{url_for('static', filename = movie.imagen)}}"></a>
     </div>
     {% endif%} {% endfor %}
 </div>
 
 <!-- Index.html -->
 {% endblock %}
+

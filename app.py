@@ -34,11 +34,13 @@ def inicio():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
-@app.route('/movies/profile/<int:id>', methods=['GET'])
-def movie_profile(id):
+@app.route('/movies/info/<int:id>', methods=['GET'])
+def info(id):
     #Muestra el perfil de una Pelicula seleccionada desde la portada
-    movie_search = Movie.query.filter_by(id=id).first()
-    return render_template('movie_info.html', movies=Movie.query.all())
+    movie_info = Movie.query.filter_by(id=id).first()
+    if movie_info:
+        return render_template('info.html', movie=movie_info)
+    return "Ficha de Pelicula no Encontrada"
 
 
 @app.route('/movies/new_movie', methods=['GET', 'POST'])
@@ -56,7 +58,7 @@ def movie():
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
         if not 'imagen' in request.files:
-            flash('Please enter the image', 'error')
+            flash('Please enter the image','error')
             return redirect(url_for('new_movie'))
         imagen = request.files['imagen']
         imagen_name = secure_filename(imagen.filename)
