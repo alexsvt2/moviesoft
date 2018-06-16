@@ -34,6 +34,12 @@ def inicio():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
+@app.route('/movies/profile/<int:id>', methods=['GET'])
+def movie_profile(id):
+    #Muestra el perfil de una Pelicula seleccionada desde la portada
+    movie_search = Movie.query.filter_by(id=id).first()
+    return render_template('movie_info.html', movies=Movie.query.all())
+
 
 @app.route('/movies/new_movie', methods=['GET', 'POST'])
 def new_movie():
