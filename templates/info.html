@@ -1,10 +1,44 @@
-{% extends 'base/base.html' %}
+<!DOCTYPE html>
+<html>
 
-{% block content%}
+<head>
+    <title> MovieSoft </title>
 
-<h1>{{movie.name}}</h1>
-<img src="{{url_for('static', filename = movie.imagen)}}" height="500">
-<p>{{movie.synopsis}}</p>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/profilestyle.css">
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
+    <style>
+        .background-image {
+            background-image: url({{url_for('static', filename = movie.imagen)}}
 
-{%endblock%}
+        );
+    </style>
+</head>
+<nav>
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <a href="/">Return to Home</a>
+</nav>
 
+<body>
+
+    <div class="background-image"></div>
+    <div class="content">
+        <h1>{{movie.name}}</h1>
+        <img src="{{url_for('static', filename = movie.imagen)}}" height="400">
+        <p>{{movie.synopsis}}</p>
+    </div>
+
+
+
+
+
+
+</body>
+<footer>
+    <a class="footer_link" href="#">About</a>
+    <a class="footer_link" href="#">F.A.Q</a>
+</footer>
+
+</html>
+
+<!-- style="background-image: url("http://image.tmdb.org/t/p/w500/bLJTjfbZ1c5zSNiAvGYs1Uc82ir.jpg");"  Esta es la manera que voy a usar mi imagen como background-->

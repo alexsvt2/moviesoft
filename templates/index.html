@@ -1,8 +1,8 @@
 {% extends 'base/base.html' %} {% block content%}
 
 <nav>
-    <img class ="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
-    
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+
     <a href="/movies">Movies</a>
     <div class="login">
         <a href="#">Entrar</a>
@@ -10,18 +10,22 @@
     </div>
 </nav>
 
+<!-- Si no hay peliculas que mostrar se puede poner un if y cambiar contenido -->
+
 <div class="contenedor-padre">
     {% for movie in movies %}
     <div class="contenedor-hijo">
         {% if movie.imagen != None %}
-        <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
-        <div><h3>{{movie.name}}</h3></div>
-        <a href="/movies/info/{{movie.id}}">Ir a Perfil de PELICULA</a>
-        <a href="{{url_for('static', filename = movie.imagen)}}"></a>
+        <a href="/movies/info/{{movie.id}}">
+            <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
+        </a>
+        <div>
+            <h3>{{movie.name}}</h3>
+            <h3>{{movie.year}}</h3>
+        </div>
     </div>
     {% endif%} {% endfor %}
 </div>
 
 <!-- Index.html -->
 {% endblock %}
-
