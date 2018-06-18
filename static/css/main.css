@@ -51,23 +51,23 @@ nav a:hover {
 
 /* CONTENEDOR IMAGENES ====== */
 
-.contenedor-padre {
+.container-image {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 50px 20px;
   background-color: black;
-  z-index: 9998;
 }
 
 .contenedor-hijo {
   text-align: center;
   padding: 20px;
-  z-index: 9998;
+  z-index: 1;
 }
 
 .imagen-cartel {
-
+  width: 250px;
+  height: 360px;
 }
 
 
@@ -150,20 +150,20 @@ footer a:hover {
 
 .background-image {
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   width: 100%;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  filter: blur(5px) brightness(50%);
+  filter: blur(10px) brightness(50%);
   background-repeat: no-repeat;
 }
 
 .background-image-index {
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   width: 100%;
   height: 100%;
   background-position: center;
@@ -172,15 +172,21 @@ footer a:hover {
   display: block;
   filter: blur(1px) brightness(30%);
   background-repeat: no-repeat;
-  
 }
 
-.content {
+.movie-info {
   font-size: 1.5em;
-  position: fixed;
-  z-index: 9999;
+  position: relative;
+  z-index: 1;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-/* ===================================== */
+.movie-info h1, p {
+  text-align: center;
+}
+
+.imagenInfo {
+  
+  height: 300px;
+}

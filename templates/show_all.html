@@ -7,7 +7,6 @@
 <table>
     <thead>
         <tr>
-            <!-- <th>Id</th> -->
             <th>Name</th>
             <th>Release Date</th>
             <th>Genre</th>
@@ -20,7 +19,6 @@
     <tbody>
         {% for movie in movies %}
         <tr>
-            <!-- <td><a href="/movies/{{movie.id}}">{{movie.id}}</a></td> -->
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
             </td>
@@ -45,8 +43,9 @@
         </tr>
         {% endfor %}
     </tbody>
-
+<!-- show_all.html -->
 </table>
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
 <div class="warning">{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %} {% endblock %}
+
