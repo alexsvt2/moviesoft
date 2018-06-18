@@ -90,6 +90,8 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
+    # if os.path.exists(movie_delete.imagen):
+    #     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     db.session.delete(movie_delete)
     db.session.commit()
