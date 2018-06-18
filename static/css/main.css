@@ -76,7 +76,7 @@ nav a:hover {
   color: black
 }
 
-.button {
+.delete-button {
   background-color: red;
   border: none;
   color: white;
