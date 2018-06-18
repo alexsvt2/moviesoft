@@ -1,8 +1,9 @@
 {% extends 'base/base.html' %} {% block content %}
 <nav>
-<a href="/movies">Return to Movie List</a>
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <a href="/movies">Return to Movie List</a>
 </nav>
-<h2>Update Movie Data</h2>
+<h1>Update Movie Data</h1>
 <!-- 'Error' Introduce todos los Datos
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
@@ -14,7 +15,7 @@
 
 <div class="container">
     <form method="post" action="/movies/{{movie.id}}" enctype="multipart/form-data">
-        
+
         <label for="name">Movie Name</label>
         <input type="text" name="name" placeholder="Enter the name of the movie" value="{{movie.name}}">
 

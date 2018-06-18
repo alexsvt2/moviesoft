@@ -25,6 +25,7 @@ nav {
   display: flex;
   background-color:;
   flex: 1;
+  padding-bottom: 5px;
 }
 
 nav a {
@@ -32,7 +33,7 @@ nav a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 18px;
   background-color: #000;
 }
 
@@ -127,9 +128,11 @@ label {
 footer {
   overflow:hidden;
   display: flex;
-  background-color:;
   flex: 1;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+  background-color: #000;
 }
 
 footer a {
@@ -139,11 +142,15 @@ padding: 14px 16px;
 text-decoration: none;
 font-size: 17px;
 background-color: #000;
+position: relative;
+  z-index: 1;
 }
 
 footer a:hover {
   background-color: #c71c22;
   color: #f9f9f9;
+  position: relative;
+  z-index: 1;
 }
 
 /* ==================================== */
