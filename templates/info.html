@@ -19,9 +19,9 @@
 
 <body>
 <div class="background-image"></div>
-    <div class="movie-info">
+    <div class="movie-data">
         <h1>{{movie.name}}</h1>
-        <img class="imagenInfo" src="{{url_for('static', filename = movie.imagen)}}">
+        <img class="movie-image" src="{{url_for('static', filename = movie.imagen)}}" width="350">
         <p>Director: {{movie.director}}</p>
         <p>Release Date: {{movie.year}}</p>
         <p>{{movie.synopsis}}</p>

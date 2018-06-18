@@ -174,19 +174,22 @@ footer a:hover {
   background-repeat: no-repeat;
 }
 
-.movie-info {
+.movie-data {
   font-size: 1.5em;
   position: relative;
   z-index: 1;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.movie-info h1, p {
+  display: block;
+  flex-flow: column;
+  margin-left: auto;    
+  margin-right: auto;
   text-align: center;
+  padding: 5px 5px;
 }
 
-.imagenInfo {
+.movie-image {
+  display: block;
+  margin-left: auto;    
+  margin-right: auto;
+  padding-bottom: 10px;
   
-  height: 300px;
 }
