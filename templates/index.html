@@ -10,12 +10,10 @@
     </div>
 </nav>
 
-<!-- Si no hay peliculas que mostrar se puede poner un if y cambiar contenido -->
-
 <div class="contenedor-padre">
     {% for movie in movies %}
     <div class="contenedor-hijo">
-        {% if movie.imagen != None %}
+        <!-- {% if movie.imagen != None %} -->
         <a href="/movies/info/{{movie.id}}">
             <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
         </a>
@@ -26,8 +24,6 @@
     </div>
     {% endif%} {% endfor %}
 </div>
-
-
 
 <!-- Index.html -->
 {% endblock %}
