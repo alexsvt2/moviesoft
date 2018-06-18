@@ -24,7 +24,7 @@ class Movie(db.Model):
     distributor = db.Column(db.String(50), unique=False, nullable=False)
     imagen = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
-    
+
     def __repr__(self):
         return '<id:%r>' % self.id
 
@@ -34,9 +34,10 @@ def inicio():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
+
 @app.route('/movies/info/<int:id>', methods=['GET'])
 def info(id):
-    #Muestra el perfil de una Pelicula seleccionada desde la portada
+    # Muestra el perfil de una Pelicula seleccionada desde la portada
     movie_info = Movie.query.filter_by(id=id).first()
     if movie_info:
         return render_template('info.html', movie=movie_info)
@@ -58,7 +59,7 @@ def movie():
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
         if not 'imagen' in request.files:
-            flash('Please enter the image','error')
+            flash('Please enter the image', 'error')
             return redirect(url_for('new_movie'))
         imagen = request.files['imagen']
         imagen_name = secure_filename(imagen.filename)
@@ -80,6 +81,7 @@ def movie():
 @app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
     """Se realiza la busqueda de la pelicula utilizando el id en la ruta"""
+    # Se tiene que cambiar de nombre la funcion para que coincida con el ingreso a la pelicula en su propio fomulario
     movie_search = Movie.query.filter_by(id=id).first()
     if movie_search:
         return render_template('search.html', movie=movie_search)
@@ -90,9 +92,10 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    # if os.path.exists(movie_delete.imagen):
-    #     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
-    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    if os.path.exists(movie_delete.imagen):
+        os.remove(os.path.join(
+            app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    # os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     db.session.delete(movie_delete)
     db.session.commit()
     return redirect(url_for('movie'))

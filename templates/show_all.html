@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %} {% block content %}
 <nav>
-        <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
     <a href="/">Return to Home</a>
     <a href="/movies/new_movie">Add a New Movie</a>
 </nav>
@@ -9,11 +9,11 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Imagen</th>
             <th>Release Date</th>
             <th>Genre</th>
             <th>Directed by</th>
             <th>Distributed by</th>
-            <th>Imagen</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -22,6 +22,9 @@
         <tr>
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
+            </td>
+            <td>
+                <img src="{{url_for('static', filename = movie.imagen)}}" alt="" width="75" height="111">
             </td>
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.year}}</a>
@@ -35,9 +38,7 @@
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.distributor}}</a>
             </td>
-            <td>
-                <img src="{{url_for('static', filename = movie.imagen)}}" alt="" width="75" height="111">
-            </td>
+
             <td>
                 <a class="delete-button" href="/movies/delete/{{movie.id}}">Delete</a>
 
@@ -45,9 +46,8 @@
         </tr>
         {% endfor %}
     </tbody>
-<!-- show_all.html -->
+    <!-- show_all.html -->
 </table>
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
 <div class="warning">{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %} {% endblock %}
-
