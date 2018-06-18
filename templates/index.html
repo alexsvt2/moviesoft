@@ -1,4 +1,22 @@
-{% extends 'base/base.html' %} {% block content%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> MovieSoft </title>
+
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/fichapelicula.css">
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
+    <style>
+        .background-image-index {
+            background-image: url(/static/netflix-background-9.jpg);}
+    </style>
+    
+
+</head>
+
+<body>
+    {% block content%}
 
 <nav>
     <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
@@ -10,12 +28,15 @@
     </div>
 </nav>
 
-<div class="contenedor-padre" style="background-image: url(/static/netflix-background-9.jpg)">
+
+<div class="background-image-index"></div>
+
+<div class="contenedor-padre">
     {% for movie in movies %}
     <div class="contenedor-hijo">
         <!-- {% if movie.imagen != None %} -->
         <a href="/movies/info/{{movie.id}}">
-            <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}" width="243" height="360">
+            <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}">
         </a>
         <div>
             <h3>{{movie.name}}</h3>
@@ -27,3 +48,5 @@
 
 <!-- Index.html -->
 {% endblock %}
+</body>
+</html>
