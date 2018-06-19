@@ -209,36 +209,34 @@ footer a:hover {
 /* MEDIA ======================================================== */
 
 @media screen and (max-width: 1020px) {
+  .logoicono {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   nav {
     overflow:hidden;
     display: flex;
     background-color: black;
     flex-wrap: wrap;
   }
-  nav .busqueda  {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-left: auto;
-  }
- 
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.5em;
-  }
-  h3 {
-    font-size: 1em;
-  }
-  nav a, nav input[type=text], nav .busqueda button, nav .login {
+
+  nav a, nav .login {
     display: block;
     text-align: left;
     width: 100%;
     margin: 0;
     padding: 14px;
+    color: #f9f9f9;
+    text-align: center;
+    padding: 14px 0px;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: #000;
   }
-  nav input[type=text] {
-    border: 1px solid black;
+
+  h1 {
+    text-align: center;
   }
+
 }
