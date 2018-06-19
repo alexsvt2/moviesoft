@@ -139,28 +139,7 @@ label {
   color: black
 }
 
-footer {
-  overflow:hidden;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  background-color: #000;
-}
 
-footer a {
-  color: #f9f9f9;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-footer a:hover {
-  background-color: #c71c22;
-  color: #f9f9f9;
-}
 
 /* ==================================== */
 
@@ -207,4 +186,26 @@ footer a:hover {
   margin-right: auto;
   padding-bottom: 10px;
   
+}
+
+footer {
+  overflow:hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background-color: #000;
+  
+}
+
+footer a {
+  color: #f9f9f9;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+footer a:hover {
+  background-color: #c71c22;
+  color: #f9f9f9;
 }
