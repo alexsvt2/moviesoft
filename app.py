@@ -93,9 +93,10 @@ def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    flash('se ha eliminado una entrada','error')
     db.session.delete(movie_delete)
     db.session.commit()
-    flash('se ha eliminado una entrada','error')
+    # flash('se ha eliminado una entrada','error')
     return render_template('show_all.html', movies=Movie.query.all())
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
