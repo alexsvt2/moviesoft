@@ -5,6 +5,9 @@
     <a href="/movies/new_movie">Add a New Movie</a>
 </nav>
 <h1>Movie List</h1>
+{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+<div>{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
 <table>
     <thead>
         <tr>

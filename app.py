@@ -97,6 +97,14 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('movie'))
 
+    #### POSIBLE SOLUCION 2
+    # if os.path.exists(movie_delete.imagen):
+    #     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    #     db.session.delete(movie_delete)
+    #     db.session.commit()
+    #     return redirect(url_for('movie'))
+    # return redirect(url_for('movie'))
+
     #### POSIBLE SOLUCION AL CRASHEO
     # if os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen)) == True:
     #     db.session.delete(movie_delete)
