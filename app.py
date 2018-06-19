@@ -98,6 +98,7 @@ def delete(id):
     db.session.commit()
     # flash('se ha eliminado una entrada','error')
     return render_template('show_all.html', movies=Movie.query.all())
+    # return redirect(url_for('movie'))
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
