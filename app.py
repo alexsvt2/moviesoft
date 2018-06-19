@@ -95,6 +95,7 @@ def delete(id):
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     db.session.delete(movie_delete)
     db.session.commit()
+    flash('se ha eliminado una entrada','error')
     return redirect(url_for('movie'))
 
     #### POSIBLE SOLUCION 2
