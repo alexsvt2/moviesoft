@@ -92,13 +92,19 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    if os.path.exists(movie_delete.imagen):
-        os.remove(os.path.join(
-            app.config['UPLOAD_FOLDER'], movie_delete.imagen))
-    # os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
     db.session.delete(movie_delete)
     db.session.commit()
     return redirect(url_for('movie'))
+
+    #### POSIBLE SOLUCION AL CRASHEO
+    # if os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen)) == True:
+    #     db.session.delete(movie_delete)
+    #     db.session.commit()
+    #     return redirect(url_for('movie'))
+    # if not os.path.exists(movie_delete.imagen) == True:
+    #     flash('Ya no existe la entrada en la ruta', 'error')
+    #     return redirect(url_for('movie'))
 
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
