@@ -96,25 +96,7 @@ def delete(id):
     db.session.delete(movie_delete)
     db.session.commit()
     flash('se ha eliminado una entrada','error')
-    return redirect(url_for('movie'))
-
-    #### POSIBLE SOLUCION 2
-    # if os.path.exists(movie_delete.imagen):
-    #     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
-    #     db.session.delete(movie_delete)
-    #     db.session.commit()
-    #     return redirect(url_for('movie'))
-    # return redirect(url_for('movie'))
-
-    #### POSIBLE SOLUCION AL CRASHEO
-    # if os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen)) == True:
-    #     db.session.delete(movie_delete)
-    #     db.session.commit()
-    #     return redirect(url_for('movie'))
-    # if not os.path.exists(movie_delete.imagen) == True:
-    #     flash('Ya no existe la entrada en la ruta', 'error')
-    #     return redirect(url_for('movie'))
-
+    return render_template('show_all.html', movies=Movie.query.all())
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
