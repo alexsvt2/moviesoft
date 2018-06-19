@@ -56,7 +56,7 @@ nav a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 50px 20px;
+  /* padding: 50px 20px; */
   background-color: black;
 }
 
@@ -140,9 +140,6 @@ label {
 }
 
 
-
-/* ==================================== */
-
 .background-image {
   position: fixed;
   z-index: 0;
@@ -195,7 +192,6 @@ footer {
   position: relative;
   z-index: 1;
   background-color: #000;
-  
 }
 
 footer a {
@@ -208,4 +204,41 @@ footer a {
 footer a:hover {
   background-color: #c71c22;
   color: #f9f9f9;
+}
+
+/* MEDIA ======================================================== */
+
+@media screen and (max-width: 1020px) {
+  nav {
+    overflow:hidden;
+    display: flex;
+    background-color: black;
+    flex-wrap: wrap;
+  }
+  nav .busqueda  {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: auto;
+  }
+ 
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  nav a, nav input[type=text], nav .busqueda button, nav .login {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  nav input[type=text] {
+    border: 1px solid black;
+  }
 }
