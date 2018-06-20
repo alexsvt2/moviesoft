@@ -118,14 +118,15 @@ def update(id):
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
+    if 'imagen' not in request.files:
+        flash('No new Data to Update', 'info')
+        return render_template('search.html', movie=movie_update)
     movie_update_req = request.files['imagen']
-    if 'imagen' in request.files:  # Verifica si hay una nueva imagen, si la hay, borra la imagen anterior
-        os.remove(os.path.join(
-            app.config['UPLOAD_FOLDER'], movie_update.imagen))  # Elimina la imagen existente usando la instancia movie_update.imagen
-    imagen_name = secure_filename(movie_update_req.filename)  # Asegura que la imagen no esta subido en forma maliciosa
-    movie_update.imagen = imagen_name # La instancia se iguala a imagen_name secure, indicando
-    movie_update_req.save(os.path.join(
-        app.config['UPLOAD_FOLDER'], imagen_name))
+    if 'imagen' in request.files:
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
+        imagen_name = secure_filename(movie_update_req.filename)
+        movie_update.imagen = imagen_name
+        movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
