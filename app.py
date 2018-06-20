@@ -49,6 +49,11 @@ def new_movie():
     return render_template('new_movie.html')
 
 
+def allowed_file(filename):
+    """Esta funcion asegura que solamente se cargan archivos de las extensiones permitidas"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 @app.route('/movies', methods=['GET', 'POST'])
 def movie():
     if request.method == 'POST':
@@ -93,12 +98,13 @@ def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
     os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
-    flash('se ha eliminado una entrada','error')
+    flash('se ha eliminado una entrada', 'error')
     db.session.delete(movie_delete)
     db.session.commit()
     # flash('se ha eliminado una entrada','error')
     return render_template('show_all.html', movies=Movie.query.all())
     # return redirect(url_for('movie'))
+
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
@@ -113,11 +119,13 @@ def update(id):
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
     movie_update_req = request.files['imagen']
-    if 'imagen' in request.files:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
-    imagen_name = secure_filename(movie_update_req.filename)
-    movie_update.imagen = imagen_name
-    movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
+    if 'imagen' in request.files:  # Verifica si hay una nueva imagen, si la hay, borra la imagen anterior
+        os.remove(os.path.join(
+            app.config['UPLOAD_FOLDER'], movie_update.imagen))  # Elimina la imagen existente usando la instancia movie_update.imagen
+    imagen_name = secure_filename(movie_update_req.filename)  # Asegura que la imagen no esta subido en forma maliciosa
+    movie_update.imagen = imagen_name # La instancia se iguala a imagen_name secure, indicando
+    movie_update_req.save(os.path.join(
+        app.config['UPLOAD_FOLDER'], imagen_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
