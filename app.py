@@ -113,7 +113,7 @@ def update(id):
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
     if 'imagen' not in request.files:
-        flash('No hay para imagen para actualizar', 'error')
+        flash('No hay para imagen para actualizar', 'info')
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 

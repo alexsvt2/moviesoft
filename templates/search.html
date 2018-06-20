@@ -6,7 +6,7 @@
 <h1 class="page-header">Update Movie Data</h1>
 <!-- 'Error' Introduce todos los Datos
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+{% with messages = get_flashed_messages(category_filter=["info"]) %} {% if messages %} {% for message in messages %}
 <div>{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %}
 
