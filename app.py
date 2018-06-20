@@ -116,7 +116,6 @@ def update(id):
     if 'imagen' in request.files:
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
     imagen_name = secure_filename(movie_update_req.filename)
-    movie_update.imagen = imagen_name
     movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
