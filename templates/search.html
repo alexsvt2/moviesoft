@@ -3,7 +3,7 @@
     <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
     <a href="/movies">Return to Movie List</a>
 </nav>
-<h1>Update Movie Data</h1>
+<h1 class="page-header">Update Movie Data</h1>
 <!-- 'Error' Introduce todos los Datos
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
@@ -44,7 +44,7 @@
         <input type="file" name="imagen" value="{{movie.imagen}}">
 
 
-        <input type="submit" value="Submit" onclick="return confirm('Are you sure, you want to delete it?')">
+        <input type="submit" value="Submit" >
     </form>
 </div>
 <!-- search.html -->

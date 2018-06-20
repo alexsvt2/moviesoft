@@ -26,6 +26,7 @@ nav {
   background-color:;
   flex: 1;
   padding-bottom: 5px;
+  padding: 2px;
 }
 
 nav a {
@@ -49,6 +50,9 @@ nav a:hover {
   justify-content: flex-end;
 }
 
+.page-header {
+  padding-left: 10px;
+}
 
 /* CONTENEDOR IMAGENES ====== */
 
@@ -276,7 +280,8 @@ footer a:hover {
 
   .tableContainer {
     overflow: auto;
-
+    border-radius: 5px;
+    margin: 5px;
   }
 
   table {
@@ -284,7 +289,6 @@ footer a:hover {
     width: 100%;
     background-color: #f2f2f2;
     overflow: auto;
-    flex-direction: 
   }
   
   th, td {
@@ -297,6 +301,12 @@ footer a:hover {
 
   .imagen-table {
     display: none;
+  }
+
+  .page-header {
+    padding: 0px;
+    position: relative;
+    z-index: 2; 
   }
 
 }
