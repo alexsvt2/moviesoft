@@ -12,7 +12,7 @@
 
 body {
   background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   text-align: left;
   font-style: normal;
   color: white;
@@ -161,7 +161,7 @@ label {
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  filter: blur(1px) brightness(30%);
+  filter: blur(0px) brightness(30%);
   background-repeat: no-repeat;
 }
 
@@ -274,11 +274,17 @@ footer a:hover {
     z-index: 2;
   }
 
+  .tableContainer {
+    overflow: auto;
+
+  }
+
   table {
     border-collapse: collapse;
     width: 100%;
     background-color: #f2f2f2;
     overflow: auto;
+    flex-direction: 
   }
   
   th, td {
@@ -287,6 +293,10 @@ footer a:hover {
     text-align: left;
     border-bottom: 1px solid #ddd;
     overflow: auto;
+  }
+
+  .imagen-table {
+    display: none;
   }
 
 }

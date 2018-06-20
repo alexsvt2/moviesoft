@@ -8,11 +8,12 @@
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
 <div>{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %}
+<div class="tableContainer">
 <table>
     <thead>
         <tr>
             <th>Name</th>
-            <th>Imagen</th>
+            <th class="imagen-table">Imagen</th>
             <th>Release Date</th>
             <th>Genre</th>
             <th>Directed by</th>
@@ -26,7 +27,7 @@
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
             </td>
-            <td>
+            <td class="imagen-table">
                 <img src="{{url_for('static', filename = movie.imagen)}}" alt="" width="75" height="111">
             </td>
             <td>
@@ -41,7 +42,6 @@
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.distributor}}</a>
             </td>
-
             <td>
                 <a class="delete-button" href="/movies/delete/{{movie.id}}" onclick="return confirm('Are you sure, you want to delete it?')">Delete</a>
 
@@ -51,6 +51,7 @@
     </tbody>
     <!-- show_all.html -->
 </table>
+</div>
 {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
 <div class="warning">{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %} {% endblock %}
