@@ -112,11 +112,10 @@ def update(id):
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
-    if 'imagen' in request.files:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
-    # if 'imagen' not in request.files:
-    #     return 'Hello, World!'
-    #     flash('No hay para imagen para actualizar', 'info')
+    movie_actualizar = request.files['imagen']
+    imagen_name = secure_filename(movie_actualizar.filename)
+    movie_update.imagen = imagen_name
+    movie_actualizar.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
