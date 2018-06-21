@@ -24,7 +24,7 @@ class Movie(db.Model):
     category = db.Column(db.String(50), unique=False, nullable=False)
     director = db.Column(db.String(50), unique=False, nullable=False)
     distributor = db.Column(db.String(50), unique=False, nullable=False)
-    file = db.Column(db.String(50), unique=False)
+    file = db.Column(db.String(50), unique=False) # Anteriormente existia imagen, pero por estar mal escrito, y confusion se cambio a file
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
 
     def __repr__(self):
