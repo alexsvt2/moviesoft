@@ -65,9 +65,6 @@ def movie():
         director = request.form['director']
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
-        if not 'file' in request.files:
-            flash('Please enter the image', 'error')
-            return redirect(url_for('new_movie'))
         file = request.files['file']
         file_name = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
