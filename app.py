@@ -26,7 +26,6 @@ class Movie(db.Model):
     distributor = db.Column(db.String(50), unique=False, nullable=False)
     imagen = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
-    testdata = db.Column(db.String(50), unique=False)
 
     def __repr__(self):
         return '<id:%r>' % self.id
