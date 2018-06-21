@@ -65,7 +65,7 @@ def movie():
         director = request.form['director']
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
-        if 'file' not in request.files:
+        if 'file' not in request.files and not name and year:
             flash('All fields required','error')
             return redirect(url_for('new_movie'))
         file = request.files['file']
