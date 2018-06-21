@@ -9,7 +9,65 @@
 <div>{{ message }}</div>
 {% endfor %} {% endif %} {% endwith %}
 <div class="tableContainer">
-<table>
+    <table>
+        <thead>
+            <tr>
+                <th class="table-head">Name</th>
+                <th class="imagen-table table-head">Image</th>
+                <th class="table-head">Release Date</th>
+                <th class="table-head">Genre</th>
+                <th class="table-head">Directed by</th>
+                <th class="table-head">Distributed by</th>
+                <th class="table-head">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr class="table-row">
+                <td class="table-data">
+                    <span class="spanhead">Name</span >
+                    <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
+                </td>
+                <td class="imagen-table table-data">
+                    <span class="spanhead">Image</span >
+                    <img src="{{url_for('static', filename = movie.file)}}" alt="" width="75" height="111">
+                </td>
+                <td class="table-data">
+                    <span class="spanhead">Year</span >
+                    <a class="lista_link" href="/movies/{{movie.id}}">{{movie.year}}</a>
+                </td>
+                <td class="table-data">
+                    <span class="spanhead">Category</span >
+                    <a class="lista_link" href="/movies/{{movie.id}}">{{movie.category}}</a>
+                </td>
+                <td class="table-data">
+                    <span class="spanhead">Director</span >
+                    <a class="lista_link" href="/movies/{{movie.id}}">{{movie.director}}</a>
+                </td>
+                <td class="table-data">
+                    <span class="spanhead">Distributor</span >
+                    <a class="lista_link" href="/movies/{{movie.id}}">{{movie.distributor}}</a>
+                </td>
+                <td class="table-data">
+                    <span class="spanhead">Action</span >
+                    <a class="delete-button" href="/movies/delete/{{movie.id}}" onclick="return confirm('Are you sure, you want to delete it?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <!-- show_all.html -->
+    </table>
+</div>
+{% endblock %}
+
+
+
+
+<!-- 
+
+
+
+
     <thead>
         <tr>
             <th>Name</th>
@@ -23,33 +81,30 @@
     </thead>
     <tbody>
         {% for movie in movies %}
-        <tr>
-            <td>
+        <tr style="width: 100%; display: flex; flex-direction: column;">
+            <td style="width: 100%;">
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
             </td>
-            <td class="imagen-table">
+            <td class="imagen-table" style="width: 100%;">
                 <img src="{{url_for('static', filename = movie.file)}}" alt="" width="75" height="111">
             </td>
-            <td>
+            <td style="width: 100%;">
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.year}}</a>
             </td>
-            <td>
+            <td style="width: 100%;">
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.category}}</a>
             </td>
-            <td>
+            <td style="width: 100%;">
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.director}}</a>
             </td>
-            <td>
+            <td style="width: 100%;">
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.distributor}}</a>
             </td>
-            <td>
+            <td style="width: 100%;">
                 <a class="delete-button" href="/movies/delete/{{movie.id}}" onclick="return confirm('Are you sure, you want to delete it?')">Delete</a>
 
             </td>
         </tr>
         {% endfor %}
     </tbody>
-    <!-- show_all.html -->
-</table>
-</div>
-{% endblock %}
+ -->

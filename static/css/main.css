@@ -107,6 +107,7 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
+
 /* Input text and month
 -------------------------------------------------- */
 input[type=text],input[type=file] {
@@ -210,9 +211,14 @@ footer a:hover {
   color: #f9f9f9;
 }
 
+.spanhead {
+  display: none;
+}
+
+
 /* MEDIA ======================================================== */
 /* max-width: 1020px; */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 400px) {
 
   nav {
     overflow:hidden;
@@ -278,7 +284,7 @@ footer a:hover {
     z-index: 2;
   }
 
-  .tableContainer {
+  /* .tableContainer {
     overflow: auto;
     border-radius: 5px;
     margin: 5px;
@@ -297,7 +303,7 @@ footer a:hover {
     text-align: left;
     border-bottom: 1px solid #ddd;
     overflow: auto;
-  }
+  } */
 
   .imagen-table {
     display: none;
@@ -309,4 +315,26 @@ footer a:hover {
     z-index: 2; 
   }
 
+  .table-row {
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+  }
+
+  /* .table-data {
+    width: 100%;
+  } */
+
+  .table-head {
+    display: none;
+  }
+
+  .spanhead {
+    color: red;
+    display: flex;
+  }
+
+  tr:nth-child(odd) {
+    background-color: white;
+  }
 }
