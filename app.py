@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from flask_migrate import Migrate # **
 
 # Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
@@ -13,6 +14,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
+migrate = Migrate(app, db) # ** La aplicacion esta lista para actualizar las tablas en cualquier momento 
 
 
 class Movie(db.Model):
@@ -24,6 +26,7 @@ class Movie(db.Model):
     distributor = db.Column(db.String(50), unique=False, nullable=False)
     imagen = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
+    testdata = db.Column(db.String(50), unique=False)
 
     def __repr__(self):
         return '<id:%r>' % self.id
