@@ -65,16 +65,17 @@ def movie():
         director = request.form['director']
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
-        file = request.files['file']
-        file_name = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        if not name or not year or not category or not director or not distributor and 'file' not in request.files:
-            flash('Please enter all the fields', 'error')
+        if 'file' not in request.files:
+            flash('All fields required','error')
             return redirect(url_for('new_movie'))
-        movie = Movie(name=name, year=year, category=category,
-                      director=director, distributor=distributor, file=file_name, synopsis=synopsis)
-        db.session.add(movie)
-        db.session.commit()
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            file_name = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+            movie = Movie(name=name, year=year, category=category,
+                    director=director, distributor=distributor, file=file_name, synopsis=synopsis)
+            db.session.add(movie)
+            db.session.commit()
         return redirect(url_for('movie'))
     elif request.method == 'GET':
         flash('Welcome', 'info')
