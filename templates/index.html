@@ -33,7 +33,7 @@
         <div class="contenedor-hijo">
             <!-- {% if movie.imagen != None %} -->
             <a href="/movies/info/{{movie.id}}">
-                <img class="imagen-cartel" src="{{url_for('static', filename = movie.imagen)}}">
+                <img class="imagen-cartel" src="{{url_for('static', filename = movie.file)}}">
                 <p>{{movie.name}}</p>
             </a>
         </div>

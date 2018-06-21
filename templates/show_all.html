@@ -28,7 +28,7 @@
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.name}}</a>
             </td>
             <td class="imagen-table">
-                <img src="{{url_for('static', filename = movie.imagen)}}" alt="" width="75" height="111">
+                <img src="{{url_for('static', filename = movie.file)}}" alt="" width="75" height="111">
             </td>
             <td>
                 <a class="lista_link" href="/movies/{{movie.id}}">{{movie.year}}</a>
@@ -52,6 +52,4 @@
     <!-- show_all.html -->
 </table>
 </div>
-{% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
-<div class="warning">{{ message }}</div>
-{% endfor %} {% endif %} {% endwith %} {% endblock %}
+{% endblock %}

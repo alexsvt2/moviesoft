@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from flask_migrate import Migrate # **
 
-# Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/imagen_database'
+# Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/file_database'
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
@@ -24,7 +24,7 @@ class Movie(db.Model):
     category = db.Column(db.String(50), unique=False, nullable=False)
     director = db.Column(db.String(50), unique=False, nullable=False)
     distributor = db.Column(db.String(50), unique=False, nullable=False)
-    imagen = db.Column(db.String(50), unique=False)
+    file = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
 
     def __repr__(self):
@@ -65,17 +65,17 @@ def movie():
         director = request.form['director']
         distributor = request.form['distributor']
         synopsis = request.form['synopsis']
-        if not 'imagen' in request.files:
+        if not 'file' in request.files:
             flash('Please enter the image', 'error')
             return redirect(url_for('new_movie'))
-        imagen = request.files['imagen']
-        imagen_name = secure_filename(imagen.filename)
-        imagen.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
-        if not name or not year or not category or not director or not distributor and 'imagen' not in request.files:
+        file = request.files['file']
+        file_name = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        if not name or not year or not category or not director or not distributor and 'file' not in request.files:
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
         movie = Movie(name=name, year=year, category=category,
-                      director=director, distributor=distributor, imagen=imagen_name, synopsis=synopsis)
+                      director=director, distributor=distributor, file=file_name, synopsis=synopsis)
         db.session.add(movie)
         db.session.commit()
         return redirect(url_for('movie'))
@@ -99,7 +99,7 @@ def search(id):
 def delete(id):
     """Se realiza la eliminacion de la pelicula utilizando el id en la ruta"""
     movie_delete = Movie.query.filter_by(id=id).first()
-    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.imagen))
+    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_delete.file))
     flash('se ha eliminado una entrada', 'error')
     db.session.delete(movie_delete)
     db.session.commit()
@@ -110,7 +110,7 @@ def delete(id):
 
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    """Actualiza los datos de una pelicula incluida la imagen"""
+    """Actualiza los datos de una pelicula incluida la file"""
     movie_update = Movie.query.filter_by(id=id).first()
     if request.method == 'GET':
         return render_template('search.html', movie=movie_update)
@@ -120,15 +120,15 @@ def update(id):
     movie_update.director = request.form['director']
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
-    if 'imagen' not in request.files:
+    if 'file' not in request.files:
         flash('No new Data to Update', 'info')
         return render_template('search.html', movie=movie_update)
-    movie_update_req = request.files['imagen']
-    if 'imagen' in request.files:
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.imagen))
-        imagen_name = secure_filename(movie_update_req.filename)
-        movie_update.imagen = imagen_name
-        movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], imagen_name))
+    movie_update_req = request.files['file']
+    if 'file' in request.files:
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.file))
+        file_name = secure_filename(movie_update_req.filename)
+        movie_update.file = file_name
+        movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 

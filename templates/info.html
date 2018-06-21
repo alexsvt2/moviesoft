@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="http://example.com/myicon.png">
     <style>
         .background-image {
-            background-image: url({{url_for('static', filename = movie.imagen)}});
+            background-image: url({{url_for('static', filename = movie.file)}});
     </style>
 </head>
 <nav>
@@ -21,7 +21,7 @@
 <div class="background-image"></div>
     <div class="movie-data">
         <h1>{{movie.name}}</h1>
-        <img class="movie-image" src="{{url_for('static', filename = movie.imagen)}}" width="350">
+        <img class="movie-image" src="{{url_for('static', filename = movie.file)}}" width="350">
         <p>Director: {{movie.director}}</p>
         <p>Release Date: {{movie.year}}</p>
         <p>{{movie.synopsis}}</p>
