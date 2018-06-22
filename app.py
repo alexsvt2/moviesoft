@@ -86,7 +86,8 @@ def movie():
                     director=director, distributor=distributor, file=file_name, synopsis=synopsis)
             db.session.add(movie)
             db.session.commit()
-        return redirect(url_for('movie'))
+        return redirect(url_for('new_movie'))
+        # return redirect(url_for('movie'))
     elif request.method == 'GET':
         flash('Welcome', 'info')
         # Esto devuelve el index con la lista de todas las peliculas
