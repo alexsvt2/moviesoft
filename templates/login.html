@@ -1,40 +1,12 @@
-{% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}Log In{% endblock %}</h1>
-{% endblock %}
-
+{% extends 'base/base.html' %}
 {% block content %}
-
+<div class="form">
+<form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Log In">
+</form>
+</div>
 {% endblock %}
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title> MovieSoft </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/static/css/main.css">
-    <link rel="stylesheet" href="/static/css/profilestyle.css">
-    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
-    <style>
-        .background-image {
-            background-image: url({{url_for('static', filename = movie.file)}});
-    </style>
-</head>
-<nav>
-    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
-    <a href="/">Return to Home</a>
-</nav>
-
-<body>
-    <form method="post">
-        <label for="username">Username</label>
-        <input name="username" id="username" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <input type="submit" value="Log In">
-      </form>
-</body>
-<!-- info.html -->
-</html>
