@@ -125,7 +125,7 @@ def update(id):
         flash('No new Data to Update', 'info')
         return render_template('search.html', movie=movie_update)
     movie_update_req = request.files['file']
-    if 'file' in request.files:
+    if 'file' in request.files and allowed_file(movie_update_req.filename):
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.file))
         file_name = secure_filename(movie_update_req.filename)
         movie_update.file = file_name
