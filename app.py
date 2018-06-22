@@ -35,6 +35,10 @@ def inicio():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html')
+
 
 @app.route('/movies/info/<int:id>', methods=['GET'])
 def info(id):
