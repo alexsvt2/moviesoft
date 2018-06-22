@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from flask_migrate import Migrate # **
 
-# Cambiar to upload folder UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static/file_database'
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
