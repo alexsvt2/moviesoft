@@ -111,7 +111,7 @@ th, td {
 
 /* Input text and month
 -------------------------------------------------- */
-input[type=text],input[type=file] {
+input[type=text],input[type=file], input[type=number] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
