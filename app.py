@@ -1,8 +1,8 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory, jsonify
+from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from flask_migrate import Migrate # **
+from flask_migrate import Migrate  # **
 
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -13,7 +13,8 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
-migrate = Migrate(app, db) # ** La aplicacion esta lista para actualizar las tablas en cualquier momento 
+# ** La aplicacion esta lista para actualizar las tablas en cualquier momento
+migrate = Migrate(app, db)
 
 
 class Movie(db.Model):
@@ -23,7 +24,8 @@ class Movie(db.Model):
     category = db.Column(db.String(50), unique=False, nullable=False)
     director = db.Column(db.String(50), unique=False, nullable=False)
     distributor = db.Column(db.String(50), unique=False, nullable=False)
-    file = db.Column(db.String(50), unique=False) # Anteriormente existia imagen, pero por estar mal escrito, y confusion se cambio a file
+    # Anteriormente existia imagen, pero por estar mal escrito, y confusion se cambio a file
+    file = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
 
     def __repr__(self):
@@ -35,9 +37,11 @@ def inicio():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
+
 @app.route('/login', methods=['GET'])
 def login():
     return render_template('login.html')
+
 
 @app.route('/register', methods=['GET'])
 def register():
@@ -76,14 +80,14 @@ def movie():
             flash('Please enter all the fields', 'error')
             return redirect(url_for('new_movie'))
         if 'file' not in request.files and not name and year:
-            flash('All fields required','error')
+            flash('All fields required', 'error')
             return redirect(url_for('new_movie'))
         file = request.files['file']
         if file and allowed_file(file.filename):
             file_name = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
             movie = Movie(name=name, year=year, category=category,
-                    director=director, distributor=distributor, file=file_name, synopsis=synopsis)
+                          director=director, distributor=distributor, file=file_name, synopsis=synopsis)
             db.session.add(movie)
             db.session.commit()
         return redirect(url_for('new_movie'))
@@ -140,7 +144,8 @@ def update(id):
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], movie_update.file))
         file_name = secure_filename(movie_update_req.filename)
         movie_update.file = file_name
-        movie_update_req.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        movie_update_req.save(os.path.join(
+            app.config['UPLOAD_FOLDER'], file_name))
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
