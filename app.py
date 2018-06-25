@@ -134,7 +134,14 @@ def update(id):
     movie_update.distributor = request.form['distributor']
     movie_update.synopsis = request.form['synopsis']
     if 'file' not in request.files:
-        flash('No new Data to Update', 'info')
+        # flash('No new Data to Update', 'info')
+        movie_update.name = request.form['name']
+        movie_update.year = request.form['year']
+        movie_update.category = request.form['category']
+        movie_update.director = request.form['director']
+        movie_update.distributor = request.form['distributor']
+        movie_update.synopsis = request.form['synopsis']
+        db.session.commit()
         return render_template('search.html', movie=movie_update)
     movie_update_req = request.files['file']
     if not allowed_file(movie_update_req.filename):
