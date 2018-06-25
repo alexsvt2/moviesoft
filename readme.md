@@ -1,0 +1,110 @@
+# Guia tecnica
+
+## MovieSoft
+
+
+
+### Entorno de Desarrollo
+
+El proyecto fue desarrollado utilizando una computadora con estas caracteristicas
+
+```
+Ubuntu 18.04 LTS
+Memoria: 11.7 GB
+Procesador: Intel® Core™ i7-3610QM CPU @ 2.30GHz × 8
+Graficos: GeForce GTX 675M/PCIe/SSE2
+GNOME: 3.28.1
+Tipo de SO: 64 bits
+```
+
+Version de **Python** usada en este proyecto
+```
+Python 3.6.5 (default, Apr  1 2018, 05:46:30)
+```
+
+Para poder Instalar el proyecto se requieren las siguientes librerias, se incluye un archivo llamado **requirements.txt** donde se explica como instalar las librerias con pip install
+
+```
+alembic==0.9.9  
+backcall==0.1.0  
+click==6.7  
+decorator==4.3.0  
+Flask==1.0.2  
+Flask-Migrate==2.2.1  
+Flask-Modus==0.0.1  
+Flask-Script==2.0.6  
+Flask-SQLAlchemy==2.3.2  
+ipython==6.4.0  
+ipython-genutils==0.2.0  
+itsdangerous==0.24  
+jedi==0.12.0  
+Jinja2==2.10  
+Mako==1.0.7  
+MarkupSafe==1.0  
+parso==0.2.1  
+pexpect==4.6.0  
+pickleshare==0.7.4  
+prompt-toolkit==1.0.15  
+psycopg2==2.7.4  
+ptyprocess==0.5.2  
+Pygments==2.2.0  
+python-dateutil==2.7.3  
+python-editor==1.0.3  
+simplegeneric==0.8.1  
+six==1.11.0  
+SQLAlchemy==1.2.8  
+traitlets==4.3.2  
+wcwidth==0.1.7  
+Werkzeug==0.14.1  
+```
+
+### Levantar el Proyecto
+
+Para levantar el proyecto se requieren seguir estos pasos:
+
+- Usar virtualenv
+- Descargar el repositorio de github
+- iniciar la aplicacion con python app.py
+
+#### Instalacion
+
+Se recomienda que el usuario cree una carpeta donde va a realizar git clone, por ejemplo **projects**
+
+```
+$ git clone https://github.com/alexsvt2/moviesoft.git
+```
+
+Si el usuario realiza git clone dentro de proyects, el proyecto se veria asi
+```
+projects/moviesoft
+```
+Dentro de projects inicia una terminal y corre los siguientes comandos para activar el entorno virtual
+```
+$ python3 -m venv venv
+$ . venv/bin/activate
+```
+Cuando el virtualenv este trabajando deberias poder ver (venv) y entonces es momento de realizar la instalacion de las librerias necesarias
+```
+(venv) ➜  projects
+```
+
+```
+# Abre una termina dentro de moviesoft
+# projects/moviesoft/
+```
+y escribe los siguientes comandos
+
+```
+$ pip install -r requirements.txt
+# Entonces comenzara a configurarse todo lo necesario para que la aplicacion corra
+```
+
+#### Ejecutar
+
+Con el virtualenv activado abre una terminal dentro de projects/moviesoft y escribe
+
+```
+python 3 app.py
+```
+
+Para entrar a la aplicacion de manera local se puede ingresar de dos maneras, usando el http://localhost:5000/ o http://127.0.0.1:5000/

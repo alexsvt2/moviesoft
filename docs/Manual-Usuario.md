@@ -22,7 +22,7 @@ Esta es la pagina principal de la aplicacion.
 En la parte superior izquierda se encuentra "Movies(Se entra a detalles mas adelante de esta seccion)".  
 Ante el usario se muestra el catalogo completo de las peliculas disponibles para ver, el usuario para poder ver la informacion de las peliculas a detalle debe identificar la pelicula que le gusta y darle click, entonces lo llevara a la vista individual de cada pelicula.
 
-<img src="welcomepage.png" />
+<img src="manual-img/welcomepage.png" />
 
 
 ---
@@ -37,7 +37,7 @@ Al hacer click a cualquier pelicula en la Pantalla de Bienvenida(Index), se pued
 - Imagen de Cartelera
 - Genero
 
-<img src="PreviewMovie.png" />
+<img src="manual-img/PreviewMovie.png" />
 
 ---
 
@@ -50,7 +50,7 @@ En esta seccion se accede mediante la pantalla principal pulsando en el Boton "M
 
 Cada Pelicula que el usuario agrega o borra se vera reflejado en esta lista.
 
-<img src="movie-list.png" />
+<img src="manual-img/movie-list.png" />
 
 ---
 
@@ -69,12 +69,12 @@ Cuando el usuario pulsa Add a new Movie se muestra este formulario
 
 Si el usuario intenta agregar los datos incompletos recibira un error de que los datos no estan completos, es un requisito obligatorio llenar todos los campos, incluido cargar una imagen.
 
-<img src="New-movie.png" />
+<img src="manual-img/New-movie.png" />
 
 ---
 ## Update a existing movie
 
 Para poder actualzizar una pelicula, se da click sobre cualquier elemento en la MovieList que contenta informacion de esa pelicula, es muy similar a agregar una nueva pelicula, unicamente el usuario modificara los datos ya existentes y por si fuera el caso tambien la imagen, no es un requisito obligatorio 
 
-<img src="Update-movie.png" />
+<img src="manual-img/Update-movie.png" />
 
