@@ -81,7 +81,7 @@ projects/moviesoft
 Dentro de projects inicia una terminal y corre los siguientes comandos para activar el entorno virtual
 ```
 $ python3 -m venv venv
-$ . venv/bin/activate
+$ source venv/bin/activate
 ```
 Cuando el virtualenv este trabajando deberias poder ver (venv) y entonces es momento de realizar la instalacion de las librerias necesarias
 ```
@@ -104,7 +104,53 @@ $ pip install -r requirements.txt
 Con el virtualenv activado abre una terminal dentro de projects/moviesoft y escribe
 
 ```
-python 3 app.py
+python3 app.py
 ```
 
 Para entrar a la aplicacion de manera local se puede ingresar de dos maneras, usando el http://localhost:5000/ o http://127.0.0.1:5000/
+
+
+#### Endpoints
+
+<table style="undefined;table-layout: fixed; width: 774px">
+  <tr>
+    <th>Metodo HTTP</th>
+    <th>URI</th>
+    <th>OPERACION</th>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/</td>
+    <td>Muestra las portadas en la pantalla principal de la aplicacion</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/movies/info/1<br></td>
+    <td>Muestra la informacion de la pelicula con el id 1</td>
+  </tr>
+  <tr>
+    <td>GET, POST</td>
+    <td>/movies/new_movie<br></td>
+    <td>Muestra el formulario de nueva pelicula</td>
+  </tr>
+  <tr>
+    <td>GET, POST</td>
+    <td>/movies</td>
+    <td>Muestra la lista de peliculas, junto con la accion borrar</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/movies/2</td>
+    <td>Permite acceder a la pelicula con id 2 desde la lista de peliculas en /movies</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/movies/delete/3<br></td>
+    <td>Realiza el borrado de la pelicula con id 3</td>
+  </tr>
+  <tr>
+    <td>GET, POST</td>
+    <td>/movies/1</td>
+    <td>Permite actualizar los datos de la pelicula 1</td>
+  </tr>
+</table>

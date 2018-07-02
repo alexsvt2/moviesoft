@@ -31,21 +31,20 @@ class Movie(db.Model):
     def __repr__(self):
         return '<id:%r>' % self.id
 
-# @app.route('/', methods=['GET'])
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
 
-@app.route('/login', methods=['GET'])
-def login():
-    return render_template('login.html')
+# @app.route('/login', methods=['GET'])
+# def login():
+#     return render_template('login.html')
 
 
-@app.route('/register', methods=['GET'])
-def register():
-    return render_template('register.html')
+# @app.route('/register', methods=['GET'])
+# def register():
+#     return render_template('register.html')
 
 
 @app.route('/movies/info/<int:id>', methods=['GET'])
@@ -55,7 +54,6 @@ def info(id):
     if movie_info:
         return render_template('info.html', movie=movie_info)
     return "Ficha de Pelicula no Encontrada"
-
 
 @app.route('/movies/new_movie', methods=['GET', 'POST'])
 def new_movie():
@@ -97,8 +95,7 @@ def movie():
         # Esto devuelve el index con la lista de todas las peliculas
         return render_template('show_all.html', movies=Movie.query.all())
 
-# @app.route('/movies/<int:id>', methods=['GET'])
-@app.route('/movies/<int:id>')
+@app.route('/movies/<int:id>', methods=['GET'])
 def search(id):
     """Se realiza la busqueda de la pelicula utilizando el id en la ruta"""
     # Se tiene que cambiar de nombre la funcion para que coincida con el ingreso a la pelicula en su propio fomulario
@@ -120,8 +117,7 @@ def delete(id):
     return render_template('show_all.html', movies=Movie.query.all())
     # return redirect(url_for('movie'))
 
-# @app.route('/movies/<int:id>', methods=['GET', 'POST'])
-@app.route('/movies/<int:id>', methods=['GET'])
+@app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
     """Actualiza los datos de una pelicula incluida la file"""
     movie_update = Movie.query.filter_by(id=id).first()
