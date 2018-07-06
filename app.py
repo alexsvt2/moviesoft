@@ -1,8 +1,13 @@
 import os
 from flask import Flask, request, render_template, redirect, url_for, flash, send_from_directory
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length, ValidationError
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 from flask_migrate import Migrate  # **
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -15,7 +20,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/proje
 db = SQLAlchemy(app)
 # ** La aplicacion esta lista para actualizar las tablas en cualquier momento
 migrate = Migrate(app, db)
-
+#===============================#
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+#===============================#
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(15), unique=True)
+    password = db.Column(db.String(80)) #This storages the hashed password
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,12 +37,24 @@ class Movie(db.Model):
     category = db.Column(db.String(50), unique=False, nullable=False)
     director = db.Column(db.String(50), unique=False, nullable=False)
     distributor = db.Column(db.String(50), unique=False, nullable=False)
-    # Anteriormente existia imagen, pero por estar mal escrito, y confusion se cambio a file
     file = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
 
     def __repr__(self):
         return '<id:%r>' % self.id
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    remember = BooleanField('remember me')
+
+class RegisterForm(FlaskForm):
+    username = StringField('usernameR', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
 
 @app.route('/', methods=['GET'])
 def home():
@@ -37,15 +62,37 @@ def home():
     return render_template('index.html', movies=Movie.query.all())
 
 
-# @app.route('/login', methods=['GET'])
-# def login():
-#     return render_template('login.html')
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+                flash('Logged in successfully.')
+            return redirect(url_for('adminpanel'))    
+        return '<h1>Invalid username or password</h1>'
+    return render_template('login.html', form=form)
 
 
-# @app.route('/register', methods=['GET'])
-# def register():
-#     return render_template('register.html')
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+        new_user = User(username=form.username.data, password=hashed_password)
+        existing_user = User.query.filter_by(username=form.username.data).first()
+        print(existing_user)
+        if existing_user:
+            flash('The username Exist')
+            return render_template('signup.html', form=form)
+        db.session.add(new_user)
+        db.session.commit()
+        flash('New user has been created!')
+    return render_template('signup.html', form=form)
 
+############################################################################################
 
 @app.route('/movies/info/<int:id>', methods=['GET'])
 def info(id):
@@ -152,6 +199,17 @@ def update(id):
     db.session.commit()
     return render_template('search.html', movie=movie_update)
 
+@app.route('/adminpanel', methods=['GET'])
+@login_required
+def adminpanel():
+    """Show the panel of administration, only for users with a accound"""
+    return render_template('adminpanel.html', users=User.query.all())
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
