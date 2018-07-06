@@ -30,6 +30,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(15), unique=True)
     password = db.Column(db.String(80)) #This storages the hashed password
 
+    def __repr__(self):
+        return '<id:%r>' % self.id
+
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=False, nullable=False)
@@ -113,6 +116,7 @@ def allowed_file(filename):
 
 
 @app.route('/movies', methods=['GET', 'POST'])
+@login_required
 def movie():
     if request.method == 'POST':
         name = request.form['name']
@@ -164,6 +168,16 @@ def delete(id):
     return render_template('show_all.html', movies=Movie.query.all())
     # return redirect(url_for('movie'))
 
+@app.route('/adminpanel/delete/<int:id>')
+def delete_user(id):
+    """deleting a user"""
+    user_delete = User.query.filter_by(id=id).first()
+    print(user_delete,'<<<<<<<<<<<<<<<<<<<<<<<')
+    flash('a user have been deleted', 'error')
+    db.session.delete(user_delete)
+    db.session.commit()
+    return render_template('adminpanel.html', users=User.query.all())
+
 @app.route('/movies/<int:id>', methods=['GET', 'POST'])
 def update(id):
     """Actualiza los datos de una pelicula incluida la file"""
@@ -209,7 +223,8 @@ def adminpanel():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return render_template('index.html', movies=Movie.query.all())
+    # return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

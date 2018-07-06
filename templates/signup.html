@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+<!-- {% import "base/wtf.html" as wtf %} -->
+
+{% block content %}
+<nav>
+  <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+  <a href="/">Return to Home</a>
+</nav>
+<h1>Sign Up</h1>
+<div>
+
+  <form class="form" method="POST" action="/signup">
+    
+    {{ form.hidden_tag() }} 
+    <label for="password">Username</label>{{ form.username }} 
+    <label for="password">Password</label>{{ form.password }}
+    <input type="submit" value="Sign Up">
+  </form>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %}
+
+</div>
+{% endblock %}

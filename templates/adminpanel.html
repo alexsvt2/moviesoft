@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %} {% block content %}
+<nav>
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <a href="/">Return to Home</a>
+</nav>
+
+<h1>
+    Administration panel</h1>
+<!-- Index.html -->
+{% if current_user.is_authenticated %} Hi {{ current_user.username }}! {% endif %}
+
+<div class="tableContainer">
+    <table>
+        <thead>
+            <tr class="table-row">
+                <th class="table-head">Id</th>
+                <th class="table-head">Username</th>
+                <th class="table-head">Password</th>
+                <th class="table-head">Action</th>
+                <th class="table-head">Action</th>
+            </tr>
+        </thead>
+        {% for user in users %}
+        <tbody>
+            <td class="table-data">
+                <span class="spanhead">Id</span>{{user.id}}</td>
+            <td class="table-data">
+                <span class="spanhead">Username</span>{{user.username}}</td>
+            <td class="table-data">
+                <span class="spanhead">Password</span>{{user.password}}</td>
+            <td class="table-data">
+                <a class="delete-button" href="/adminpanel/delete/{{user.id}}" onclick="return confirm('Are you sure, you want to delete it?')">Delete</a>
+            </td>
+            <td class="table-data">
+                <a class="update-button" href="/" >Update</a>
+            </td>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

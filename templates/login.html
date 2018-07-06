@@ -1,11 +1,34 @@
-{% extends 'base/base.html' %} {% block content %}
-<div class="form">
-    <form method="post">
-        <label for="username">Username</label>
-        <input name="username" id="username" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <input type="submit" value="Log In">
-    </form>
-</div>
+{% extends 'base/base.html' %} 
+<!-- {% import "base/wtf.html" as wtf %} -->
+
+{% block content %}
+<nav>
+    <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
+    <a href="/">Return to Home</a>
+</nav>
+<h1>Please Login</h1>
+    <div>
+        {% with messages = get_flashed_messages(category_filter=["error"]) %} {% if messages %} {% for message in messages %}
+        <div class="flash_message">{{ message }}</div>
+        {% endfor %} {% endif %} {% endwith %}
+
+      <form class="form" method="POST" action="/login">
+        
+        {{ form.hidden_tag() }}
+        <label for="password">Username</label>{{ form.username }}
+        <label for="password">Password</label>{{ form.password }}
+        <!-- <label for="remember">Remember </label>{{ form.remember }} -->
+        <input type="submit" value="Submit">
+      </form>
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    </div> <!-- /container -->
 {% endblock %}

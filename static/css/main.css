@@ -93,6 +93,19 @@ nav a:hover {
   cursor: pointer;
 }
 
+.update-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 
 table {
   border-collapse: collapse;
@@ -123,7 +136,7 @@ input[type=text],input[type=file], input[type=number] {
 }
 /* Boton Submit */
 input[type=submit] {
-  width: 100%;
+  /* width: 100%; */
   background-color: red;
   padding: 14px 20px;
   margin: 8px 0;
@@ -131,6 +144,12 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   color: white;
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
 }
 
 input[type=password],input[name=username] {

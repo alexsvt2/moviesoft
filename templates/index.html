@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title> MovieSoft </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
         }
     </style>
 </head>
+
 <body>
     {% block content%}
 
@@ -20,10 +22,12 @@
         <img class="logoicono" src="/static/css/Logo_Netflix.png" alt="Logotipo" height="45">
 
         <a href="/movies">Movies</a>
-        <!-- <div class="login">
+        <div class="login">
+            <a href="/signup">Sign Up</a>
             <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        </div> -->
+            <a href="/adminpanel">Admin Panel</a>
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        </div>
     </nav>
     <h1 class="page-header">Welcome to Nelflix</h1>
     <div class="background-image-index"></div>
@@ -40,7 +44,7 @@
         {% endif%} {% endfor %}
     </div>
 
-    
+
     {% endblock %}
 </body>
 <!-- Index.html -->
@@ -49,4 +53,5 @@
         <a href="#">F.A.Q</a>
 </footer> -->
 </div>
+
 </html>
