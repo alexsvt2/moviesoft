@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Escritorio/projects/moviesoft/movie_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Documents/PythonProjects/FlaskProjects/moviesoft/movie_database.db'
 db = SQLAlchemy(app)
 # ** La aplicacion esta lista para actualizar las tablas en cualquier momento
 migrate = Migrate(app, db)
