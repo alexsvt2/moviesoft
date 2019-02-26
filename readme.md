@@ -68,6 +68,8 @@ Para levantar el proyecto se requieren seguir estos pasos:
 
 #### Instalacion
 
+Se debe corregir la carpeta de statics donde van los archivos de carga, solo para que coincidan con los datos locales, y la ruta donde se guarda la base de datos, mas adelante corregire todos los errores de Moviesoft.
+
 Se recomienda que el usuario cree una carpeta donde va a realizar git clone, por ejemplo **projects**
 
 ```
