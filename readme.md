@@ -3,6 +3,11 @@
 ## MovieSoft
 
 
+## Usuario de la Base de Datos
+
+admin
+movie_soft
+
 
 ### Entorno de Desarrollo
 
