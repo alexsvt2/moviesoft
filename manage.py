@@ -12,8 +12,5 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-# class Movie(db.Model):
-#     synopsis = db.Column(db.String(200), unique=False, nullable=False)
-
 if __name__ == '__main__':
     manager.run()

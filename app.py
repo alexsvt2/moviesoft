@@ -20,6 +20,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/movie_database.db'
+
 db = SQLAlchemy(app)
 # ** La aplicacion esta lista para actualizar las tablas en cualquier momento
 migrate = Migrate(app, db)
@@ -34,7 +35,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(80)) #This storages the hashed password
 
     def __repr__(self):
-        return '<id:%r>' % self.id
+        return "Id:{}".format(self.id)
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,9 +46,9 @@ class Movie(db.Model):
     distributor = db.Column(db.String(50), unique=False, nullable=False)
     file = db.Column(db.String(50), unique=False)
     synopsis = db.Column(db.String(500), unique=False, nullable=True)
-
+ 
     def __repr__(self):
-        return '<id:%r>' % self.id
+        return "Id:{}".format(self.id)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -65,7 +66,6 @@ class RegisterForm(FlaskForm):
 @app.route('/', methods=['GET'])
 def home():
     return render_template('index.html', movies=Movie.query.all())
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -219,7 +219,6 @@ def update(id):
 @app.route('/adminpanel', methods=['GET'])
 @login_required
 def adminpanel():
-    """Show the panel of administration, only for users with a accound"""
     return render_template('adminpanel.html', users=User.query.all())
 
 @app.route('/logout')
@@ -227,7 +226,6 @@ def adminpanel():
 def logout():
     logout_user()
     return render_template('index.html', movies=Movie.query.all())
-    # return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
