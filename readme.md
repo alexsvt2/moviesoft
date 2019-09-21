@@ -161,3 +161,24 @@ Para entrar a la aplicacion de manera local se puede ingresar de dos maneras, us
     <td>Permite actualizar los datos de la pelicula 1</td>
   </tr>
 </table>
+
+### Base de Datos y Migraciones
+
+Una parte importante de la aplicacion es poder crear nuevos modelos y actualizarlos, actualmente todo se encuentra en el mismo archivo, sin embargo voy a empezar a cambiar de lugares los scripts para poder limpiar el app principal
+
+de Momento es importante saber que la creacion de la base de datos se realiza 
+En el folder raiz del project
+
+Se ejecuta el interprete de Python en la consola
+
+```
+python
+#
+>>> from app import db
+>>> db.create_all()
+```
+La ejecucion de estas lineas provocara que si la base de datos no existe, sea creada
+
+Para ejecutar las migraciones(Cuando se modifica la estructura de la base de datos)
+Adjunto una url para consultar las migraciones
+https://flask-migrate.readthedocs.io/en/latest/

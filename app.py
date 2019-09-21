@@ -9,14 +9,17 @@ from werkzeug.utils import secure_filename
 from flask_migrate import Migrate  # **
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-UPLOAD_FOLDER = '/home/alexis/Escritorio/projects/moviesoft/static'
+
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = "{}/static".format(PROJECT_PATH)
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/alexis/Documents/PythonProjects/FlaskProjects/moviesoft/movie_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/movie_database.db'
 db = SQLAlchemy(app)
 # ** La aplicacion esta lista para actualizar las tablas en cualquier momento
 migrate = Migrate(app, db)
@@ -56,12 +59,11 @@ class LoginForm(FlaskForm):
     remember = BooleanField('remember me')
 
 class RegisterForm(FlaskForm):
-    username = StringField('usernameR', validators=[InputRequired(), Length(min=4, max=15)])
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
 
 @app.route('/', methods=['GET'])
 def home():
-    # Muestra las portadas en Index
     return render_template('index.html', movies=Movie.query.all())
 
 
@@ -142,6 +144,7 @@ def movie():
         return redirect(url_for('new_movie'))
         # return redirect(url_for('movie'))
     elif request.method == 'GET':
+        print(PROJECT_PATH)
         flash('Welcome', 'error')
         # Esto devuelve el index con la lista de todas las peliculas
         return render_template('show_all.html', movies=Movie.query.all())
